@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<button on:click>
+<button class="block py-2 px-4 rounded text-center cursor-pointer" on:click>
 	<slot />
 </button>
 
@@ -9,8 +9,6 @@
 	button {
 		background: #7f977b;
 		color: white;
-		@apply block py-2 px-4 rounded text-center cursor-pointer;
-
 		&:hover {
 			background: #6e7d60;
 		}

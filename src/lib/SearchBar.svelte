@@ -3,13 +3,12 @@
   export let value = '';
 </script>
 
-<input bind:value type="text" {placeholder} />
+<input bind:value type="text" class="py-2 px-5 rounded border outline-none" {placeholder} />
 
 <style lang="scss">
 	input {
 		background: #f9f9f9;
 		color: #2f2f2f;
-		@apply py-2 px-5 rounded border outline-none;
 
 		&:focus {
       border: 1px solid #6e7d60;
