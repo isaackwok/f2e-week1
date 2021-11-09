@@ -8,7 +8,9 @@
 
 <nav class="flex justify-center p-4 border-b">
 	<div class="container flex justify-between">
-		<img src="/logo-desktop.svg" alt="台灣走走．Tai Walk" />
+		<a href="/">
+			<img src="/logo-desktop.svg" alt="台灣走走．Tai Walk" />
+		</a>
 		<div class="flex">
 			{#each links as link (link.text)}
 				<a class="flex items-center mx-2" href={link.href}>
@@ -26,7 +28,7 @@
 		color: #646464;
 
 		&:hover {
-			color: #7F977B;
+			color: #7f977b;
 		}
 	}
 </style>
