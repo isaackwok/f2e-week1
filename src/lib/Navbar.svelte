@@ -1,4 +1,5 @@
 <script>
+  import Logo from '$lib/Logo.svelte';
 	const links = [
 		{ text: '探索景點', href: '/place' },
 		{ text: '節慶活動', href: '/event' },
@@ -6,11 +7,9 @@
 	];
 </script>
 
-<nav class="flex justify-center p-4 border-b">
+<nav class="flex justify-center p-4 border-b sticky-top">
 	<div class="container flex justify-between">
-		<a href="/">
-			<img src="/logo-desktop.svg" alt="台灣走走．Tai Walk" />
-		</a>
+		<Logo />
 		<div class="flex">
 			{#each links as link (link.text)}
 				<a class="flex items-center mx-2" href={link.href}>

@@ -3,6 +3,10 @@
 	import Footer from '$lib/Footer.svelte';
 </script>
 
+<svelte:head>
+  <script defer src="/font-awesome/all.js"></script>
+</svelte:head>
+
 <Navbar />
 
 <main class="container flex flex-col items-center p-4 m-auto">
