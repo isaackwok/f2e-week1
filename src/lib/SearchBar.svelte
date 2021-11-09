@@ -3,7 +3,7 @@
   export let value = '';
 </script>
 
-<input bind:value type="text" class="py-2 px-5 rounded border outline-none" {placeholder} />
+<input bind:value type="text" class="px-4 py-2 rounded border outline-none" {placeholder} />
 
 <style lang="scss">
 	input {

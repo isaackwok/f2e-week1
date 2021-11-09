@@ -9,7 +9,7 @@
 
 <Navbar />
 
-<main class="container flex flex-col items-center p-4 m-auto">
+<main class="container flex flex-col items-center px-4 py-4 sm:py-16 m-auto">
 	<slot />
 </main>
 

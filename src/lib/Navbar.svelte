@@ -8,9 +8,9 @@
 </script>
 
 <nav class="flex justify-center p-4 border-b sticky-top">
-	<div class="container flex justify-between">
+	<div class="container flex justify-center sm:justify-between">
 		<Logo />
-		<div class="flex">
+		<div class="hidden sm:flex">
 			{#each links as link (link.text)}
 				<a class="flex items-center mx-2" href={link.href}>
 					<span>

@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<button class="block py-2 px-4 rounded text-center cursor-pointer" on:click>
+<button class="block px-4 py-2 rounded text-center cursor-pointer" on:click>
 	<slot />
 </button>
 
