@@ -19,7 +19,7 @@
 
 <div class="flex flex-col justify-evenly sm:flex-row w-full justify-around">
 	<div class="font-light">
-		<div class="text-5xl leading-normal">
+		<div class="text-5xl leading-normal text-center sm:text-left">
 			<p>探索<span class="slogan-highlight">台灣之美</span></p>
 			<p>讓我們更親近這片土地</p>
 		</div>
