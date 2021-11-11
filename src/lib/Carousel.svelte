@@ -51,6 +51,6 @@
 
 <style>
 	.indicator {
-		@apply absolute flex items-center justify-center text-2xl rounded-full text-white bg-black bg-opacity-40 h-12 w-12 p-1 cursor-pointer top-1/2 m-2;
+		@apply absolute flex items-center justify-center text-2xl rounded-full text-white bg-black bg-opacity-40 h-12 w-12 p-1 cursor-pointer top-1/2 m-2 -mt-4;
 	}
 </style>
