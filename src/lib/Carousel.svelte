@@ -1,11 +1,12 @@
 <script>
 	import { slide } from 'svelte/transition';
+	import { sineInOut } from 'svelte/easing';
 	export let items = [];
 	let currentIndex = 0;
 
 	$: isFirstSlide = currentIndex === 0;
 	$: isLastSlide = currentIndex === items.length - 1;
-	$: console.log(currentIndex);
+	// $: console.log(currentIndex);
 
 	const handleSlide = (n) => {
 		currentIndex += n;
@@ -15,12 +16,18 @@
 <div class="relative overflow-hidden w-full h-full rounded-xl">
 	<!-- Slides -->
 	{#each items as item, idx}
-		<div class="relative flex w-full h-full" class:hidden={idx !== currentIndex}>
-			<p class="absolute self-center w-full text-center text-white text-shadow-xl text-3xl">
-				{item.label}
-			</p>
-			<img class="object-cover object-center w-full h-full" src={item.src || '/picture-holder.png'} alt="" />
-		</div>
+		{#if idx === currentIndex}
+			<div transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full">
+				<p class="absolute self-center w-full text-center text-white text-shadow-xl text-3xl">
+					{item.label}
+				</p>
+				<img
+					class="object-cover object-center w-full h-full"
+					src={item.src || '/picture-holder.png'}
+					alt=""
+				/>
+			</div>
+		{/if}
 	{/each}
 
 	<!-- Dots -->
