@@ -40,17 +40,19 @@
 		{/each}
 	</div>
 
-	<!-- Indicator -->
-	<a class:hidden={isFirstSlide} class="left-0 indicator" on:click={() => handleSlide(-1)}>
-		<i class="fas fa-chevron-left" />
-	</a>
-	<a class:hidden={isLastSlide} class="right-0 indicator" on:click={() => handleSlide(1)}>
-		<i class="fas fa-chevron-right" />
-	</a>
+	<!-- Indicators-->
+	<div class="absolute flex items-center justify-between inset-0 px-4">
+		<div class:invisible={isFirstSlide} class="indicator" on:click={() => handleSlide(-1)}>
+			<i class="fas fa-chevron-left" />
+		</div>
+		<div class:invisible={isLastSlide} class="indicator" on:click={() => handleSlide(1)}>
+			<i class="fas fa-chevron-right" />
+		</div>
+	</div>
 </div>
 
 <style>
 	.indicator {
-		@apply absolute flex items-center justify-center text-2xl rounded-full text-white bg-black bg-opacity-40 h-12 w-12 p-1 cursor-pointer top-1/2 m-2 -mt-4;
+		@apply flex items-center justify-center text-2xl rounded-full text-white bg-black bg-opacity-40 h-12 w-12 p-1 cursor-pointer;
 	}
 </style>
