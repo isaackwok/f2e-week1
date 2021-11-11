@@ -1,5 +1,5 @@
 <script>
-  import Logo from '$lib/Logo.svelte';
+	import Logo from '$lib/Logo.svelte';
 	const links = [
 		{ text: '探索景點', href: '/place' },
 		{ text: '節慶活動', href: '/event' },

@@ -17,7 +17,7 @@
 	};
 </script>
 
-<div class="flex flex-col justify-evenly sm:flex-row w-full justify-around">
+<section class="flex flex-col justify-evenly sm:flex-row w-full justify-around">
 	<div class="font-light">
 		<div class="text-5xl leading-normal text-center sm:text-left">
 			<p>探索<span class="slogan-highlight">台灣之美</span></p>
@@ -33,11 +33,11 @@
 		<Dropdown {items} {value} on:select={handleSelect} />
 		<SearchBar bind:value={query} placeholder="你想去哪裡？請輸入關鍵字" />
 		<Button>
-			<i class="fas fa-search mr-2" />
-			搜 尋
+			<i class="fas fa-search" />
+			搜尋
 		</Button>
 	</div>
-</div>
+</section>
 
 <style>
 	.slogan-highlight {

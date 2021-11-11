@@ -1,11 +1,32 @@
 <script>
 	import HeroSection from '$lib/index/HeroSection.svelte';
+	import { onMount } from 'svelte';
+	import axios from 'axios';
+	import FeatureSection from '$lib/index/FeatureSection.svelte';
+
+	let places;
+
+	$: featureSpots =
+		places &&
+		places.map((place, i) => ({
+			id: i,
+			label: `${place.Address.slice(0, 3)} | ${place.Name}`,
+			src: place.Picture?.PictureUrl1 || null
+		}));
+
+	onMount(async () => {
+		const results = await axios.get('/ScenicSpot',{
+      params: {
+        $top: 6,
+        $format: 'JSON',
+        $orderby: 'UpdateTime'
+      }
+    });
+		places = results.data;
+	});
 </script>
 
-<!-- <div class="flex flex-col">
-	<Dropdown {items} {value} on:select={handleSelect} />
-	<SearchBar bind:value={query} placeholder="想找有趣的？請輸入關鍵字" />
-	<Button bind:value={query} placeholder="想找有趣的？請輸入關鍵字"><i class="fas fa-search mr-2"></i>搜 尋</Button>
-</div> -->
-
-<HeroSection />
+<div class="grid grid-cols-1 gap-16">
+	<HeroSection />
+	<FeatureSection {featureSpots} />
+</div>
