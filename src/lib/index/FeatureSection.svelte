@@ -3,8 +3,8 @@
   export let featureSpots = [];
 </script>
 
-<div class="flex justify-center">
+<section class="flex justify-center">
 	<div class="w-5xl h-60 sm:h-md">
 		<Carousel items={featureSpots} />
 	</div>
-</div>
+</section>
