@@ -4,12 +4,13 @@
 	export let items = [];
 	let currentIndex = 0;
 
-	$: isFirstSlide = currentIndex === 0;
-	$: isLastSlide = currentIndex === items.length - 1;
 	// $: console.log(currentIndex);
 
 	const handleSlide = (n) => {
-		currentIndex += n;
+    const newIndex = currentIndex + n;
+		if (newIndex >= items.length) currentIndex = 0;
+		else if (newIndex < 0) currentIndex = items.length - 1;
+		else currentIndex = newIndex;
 	};
 </script>
 
@@ -18,7 +19,9 @@
 	{#each items as item, idx}
 		{#if idx === currentIndex}
 			<div transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full rounded-xl">
-				<p class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl">
+				<p
+					class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl"
+				>
 					{item.label}
 				</p>
 				<img
@@ -42,10 +45,10 @@
 
 	<!-- Indicators-->
 	<div class="absolute flex items-center justify-between inset-0 px-4">
-		<div class:invisible={isFirstSlide} class="indicator" on:click={() => handleSlide(-1)}>
+		<div class="indicator" on:click={() => handleSlide(-1)}>
 			<i class="fas fa-chevron-left" />
 		</div>
-		<div class:invisible={isLastSlide} class="indicator" on:click={() => handleSlide(1)}>
+		<div class="indicator" on:click={() => handleSlide(1)}>
 			<i class="fas fa-chevron-right" />
 		</div>
 	</div>
