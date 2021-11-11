@@ -18,7 +18,7 @@
 	{#each items as item, idx}
 		{#if idx === currentIndex}
 			<div transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full rounded-xl">
-				<p class="absolute self-center w-full text-center text-white text-shadow-xl text-3xl">
+				<p class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl">
 					{item.label}
 				</p>
 				<img
@@ -35,7 +35,7 @@
 		{#each items as item, idx}
 			<div
 				class:bg-opacity-40={idx !== currentIndex}
-				class="m-1 bg-white shadow rounded-full h-4 w-4"
+				class="m-1 bg-white shadow rounded-full h-2 w-2 sm:h-4 sm:w-4"
 			/>
 		{/each}
 	</div>
@@ -53,6 +53,6 @@
 
 <style>
 	.indicator {
-		@apply flex items-center justify-center text-2xl border-2 rounded-full text-white shadow-lg h-12 w-12 p-1 cursor-pointer;
+		@apply flex items-center justify-center text-lg sm:text-2xl border-2 rounded-full text-white shadow-lg h-8 w-8 sm:h-12 sm:w-12 p-1 cursor-pointer;
 	}
 </style>
