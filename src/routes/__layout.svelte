@@ -27,6 +27,7 @@
 
 <svelte:head>
 	<script defer src="/font-awesome/all.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </svelte:head>
 
 <Navbar />

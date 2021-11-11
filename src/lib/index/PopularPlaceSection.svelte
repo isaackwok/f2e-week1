@@ -9,11 +9,11 @@
 </script>
 
 <section>
-	<div class="flex w-full justify-between items-center mb-4">
+	<div class="flex justify-between items-center mb-4">
 		<Header>熱門打卡景點</Header>
 		<ExporeMore href="/place">查看更多景點</ExporeMore>
 	</div>
-	<div class="flex justify-between">
+	<div class="flex justify-start md:justify-between gap-4 overflow-scroll">
 		{#each top4Items as place}
 			<ImageCard
 				href={`/place/${place.id}`}

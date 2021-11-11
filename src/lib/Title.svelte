@@ -1,4 +1,4 @@
-<div class="title font-bold text-xl">
+<div class="title font-bold text-xl truncate">
   <slot />
 </div>
 
