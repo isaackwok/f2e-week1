@@ -53,6 +53,6 @@
 
 <style>
 	.indicator {
-		@apply flex items-center justify-center text-lg sm:text-2xl border-2 rounded-full text-white shadow-lg h-8 w-8 sm:h-12 sm:w-12 p-1 cursor-pointer;
+		@apply flex items-center justify-center border-2 rounded-full text-white shadow-lg h-8 w-8 sm:h-12 sm:w-12 p-1 cursor-pointer;
 	}
 </style>
