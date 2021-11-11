@@ -4,7 +4,7 @@
 </script>
 
 <section>
-	<div class="flex w-full justify-between items-center">
+	<div class="flex w-full justify-between items-center mb-4">
 		<Header>近期活動</Header>
 		<ExporeMore href="/place">查看更多活動</ExporeMore>
 	</div>

@@ -7,8 +7,8 @@
 	];
 </script>
 
-<nav class="flex justify-center p-4 border-b sticky-top">
-	<div class="container flex justify-center sm:justify-between">
+<nav class="p-4 border-b sticky top-0 bg-white z-60">
+	<div class="container flex justify-center sm:justify-between mx-auto">
 		<Logo />
 		<div class="hidden sm:flex">
 			{#each links as link (link.text)}

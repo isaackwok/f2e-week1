@@ -1,10 +1,10 @@
 <script>
 	import Carousel from '$lib/Carousel.svelte';
-  export let featureSpots = [];
+  export let items = [];
 </script>
 
 <section class="flex justify-center w-full">
-	<div class="w-full sm:w-5xl h-60 sm:h-md">
-		<Carousel items={featureSpots} />
+	<div class="w-full h-60 sm:h-md">
+		<Carousel {items} />
 	</div>
 </section>
