@@ -17,7 +17,7 @@
 	<!-- Slides -->
 	{#each items as item, idx}
 		{#if idx === currentIndex}
-			<div transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full">
+			<div transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full rounded-xl">
 				<p class="absolute self-center w-full text-center text-white text-shadow-xl text-3xl">
 					{item.label}
 				</p>
