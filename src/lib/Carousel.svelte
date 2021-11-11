@@ -8,9 +8,17 @@
 
 	const handleSlide = (n) => {
 		const newIndex = currentIndex + n;
-		if (newIndex >= items.length) currentIndex = 0;
-		else if (newIndex < 0) currentIndex = items.length - 1;
-		else currentIndex = newIndex;
+		setIndex(newIndex);
+	};
+
+	const setIndex = (n) => {
+		if (n >= items.length) {
+			currentIndex = 0;
+		} else if (n < 0) {
+			currentIndex = items.length - 1;
+		} else {
+			currentIndex = n;
+		}
 	};
 </script>
 
@@ -18,7 +26,11 @@
 	<!-- Slides -->
 	{#each items as item, idx}
 		{#if idx === currentIndex}
-			<a href={item.href} transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full rounded-xl">
+			<a
+				href={item.href}
+				transition:slide|local
+				class="relative flex w-full h-full rounded-xl"
+			>
 				<p
 					class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl"
 				>
@@ -33,16 +45,6 @@
 		{/if}
 	{/each}
 
-	<!-- Dots -->
-	<div class="absolute right-4 bottom-2 flex">
-		{#each items as item, idx}
-			<div
-				class:bg-opacity-40={idx !== currentIndex}
-				class="m-1 bg-white shadow rounded-full h-2 w-2 sm:h-4 sm:w-4"
-			/>
-		{/each}
-	</div>
-
 	<!-- Indicators-->
 	<div class="absolute flex items-center justify-between inset-y-0 left-0 px-4">
 		<div class="indicator" on:click={() => handleSlide(-1)}>
@@ -53,6 +55,17 @@
 		<div class="indicator" on:click={() => handleSlide(1)}>
 			<i class="fas fa-chevron-right" />
 		</div>
+	</div>
+
+	<!-- Dots -->
+	<div class="absolute right-4 bottom-2 flex">
+		{#each items as _, idx}
+			<div
+				class:bg-opacity-40={idx !== currentIndex}
+        on:click={() => setIndex(idx)}
+				class="m-1 bg-white shadow rounded-full h-2 w-2 sm:h-4 sm:w-4 cursor-pointer"
+			/>
+		{/each}
 	</div>
 </div>
 
