@@ -7,7 +7,7 @@
 	// $: console.log(currentIndex);
 
 	const handleSlide = (n) => {
-    const newIndex = currentIndex + n;
+		const newIndex = currentIndex + n;
 		if (newIndex >= items.length) currentIndex = 0;
 		else if (newIndex < 0) currentIndex = items.length - 1;
 		else currentIndex = newIndex;
@@ -18,7 +18,7 @@
 	<!-- Slides -->
 	{#each items as item, idx}
 		{#if idx === currentIndex}
-			<div transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full rounded-xl">
+			<a href={item.href} transition:slide={{ easing: sineInOut }} class="relative flex w-full h-full rounded-xl">
 				<p
 					class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl"
 				>
@@ -29,7 +29,7 @@
 					src={item.src || '/picture-holder.png'}
 					alt=""
 				/>
-			</div>
+			</a>
 		{/if}
 	{/each}
 
@@ -44,10 +44,12 @@
 	</div>
 
 	<!-- Indicators-->
-	<div class="absolute flex items-center justify-between inset-0 px-4">
+	<div class="absolute flex items-center justify-between inset-y-0 left-0 px-4">
 		<div class="indicator" on:click={() => handleSlide(-1)}>
 			<i class="fas fa-chevron-left" />
 		</div>
+	</div>
+	<div class="absolute flex items-center justify-between inset-y-0 right-0 px-4">
 		<div class="indicator" on:click={() => handleSlide(1)}>
 			<i class="fas fa-chevron-right" />
 		</div>

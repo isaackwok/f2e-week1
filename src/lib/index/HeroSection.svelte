@@ -17,7 +17,7 @@
 	};
 </script>
 
-<section class="flex flex-col justify-evenly sm:flex-row w-full justify-around">
+<section class="flex flex-col justify-evenly sm:flex-row w-full justify-around gap-4">
 	<div class="font-light">
 		<div class="text-5xl leading-normal text-center sm:text-left">
 			<p>探索<span class="slogan-highlight">台灣之美</span></p>
