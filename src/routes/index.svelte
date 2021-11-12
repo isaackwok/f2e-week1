@@ -51,7 +51,8 @@
 					$top: 6,
 					$select: 'ID,Address,Picture,Name,City',
 					$format: 'JSON',
-					$orderby: 'UpdateTime'
+					$orderby: 'UpdateTime',
+          $filter: 'Picture/PictureUrl1 ne null'
 				}
 			})
 			.then((res) => {
@@ -65,6 +66,7 @@
 					$top: 4,
 					$select: 'ID,Address,Picture,Name',
 					$format: 'JSON',
+          $filter: 'Picture/PictureUrl1 ne null'
 				}
 			})
 			.then((res) => {
@@ -78,6 +80,7 @@
 					$top: 4,
 					$select: 'ID,Address,Location,Picture,Name,StartTime,EndTime',
 					$format: 'JSON',
+          $filter: 'Picture/PictureUrl1 ne null'
 				}
 			})
 			.then((res) => {
