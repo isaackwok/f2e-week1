@@ -32,7 +32,7 @@
 
 <Navbar />
 
-<main class="relative container flex flex-col items-center px-4 py-4 sm:py-16 mx-auto max-w-3/5">
+<main class="relative container flex flex-col items-center px-4 py-4 sm:py-16 mx-auto lg:max-w-3/5">
 	<slot />
 </main>
 
