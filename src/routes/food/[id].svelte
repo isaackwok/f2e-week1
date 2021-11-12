@@ -15,7 +15,7 @@
 			.get('/Restaurant', {
 				params: {
 					$top: 4,
-					$filter: `ID ne '${id}'`,
+					$filter: `ID ne '${id}' and Picture/PictureUrl1 ne null`,
 					$spatialFilter: `nearby(${restaurant.Position?.PositionLat}, ${restaurant.Position?.PositionLon}, 5000)`
 				}
 			})

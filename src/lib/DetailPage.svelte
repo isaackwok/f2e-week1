@@ -1,4 +1,5 @@
 <script>
+	import { toggle_class } from 'svelte/internal';
 	import Carousel from './Carousel.svelte';
 	import ExporeMore from './ExporeMore.svelte';
 	import Hashtag from './Hashtag.svelte';
@@ -23,17 +24,19 @@
 </section>
 
 <!-- Information -->
-<section class="flex flex-col gap-4 font-light mb-4">
+<section class="flex flex-col gap-4 w-full font-light mb-4">
 	<Header>{item.title}</Header>
-	<div>
+	<div class="flex gap-2">
 		{#each item.tags as tag}
 			<Hashtag>{tag}</Hashtag>
 		{/each}
 	</div>
-	<div>
-		<Title>{categoryZh}介紹：</Title>
-		<p class="text-lg leading-relaxed">{item.description}</p>
-	</div>
+	{#if item.description}
+		<div>
+			<Title>{categoryZh}介紹：</Title>
+			<p class="text-lg leading-relaxed">{item.description}</p>
+		</div>
+	{/if}
 </section>
 
 <!-- More (Nearby) -->
