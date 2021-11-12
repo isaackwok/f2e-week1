@@ -35,10 +35,10 @@
 		events &&
 		events.map((event) => ({
 			id: event.ID,
-			city: event.Location.slice(0, 3),
+			city: event.Address?.slice(0, 3) || event.Location?.slice(0, 3),
 			name: event.Name,
       date: `${event.StartTime.split('T')[0]} - ${event.EndTime.split('T')[0]}`,
-			label: event.City || `${event.Location.slice(0, 3)} | ${event.Name}`,
+			label: event.City || event.Address?.slice(0, 3) || `${event.Location.slice(0, 3)} | ${event.Name}`,
 			href: `/event/${event.ID}`,
 			src: event.Picture?.PictureUrl1 || null
 		}));
@@ -76,7 +76,7 @@
 			.get('/Activity', {
 				params: {
 					$top: 4,
-					$select: 'ID,Location,Picture,Name,StartTime,EndTime',
+					$select: 'ID,Address,Location,Picture,Name,StartTime,EndTime',
 					$format: 'JSON',
 				}
 			})
