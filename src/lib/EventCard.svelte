@@ -18,7 +18,7 @@
 		class="flex-1 flex flex-col justify-between sm:py-4 px-8 w-full h-full sm:bg-gray-100 sm:border rounded-r-xl"
 	>
 		<div class="flex flex-col gap-2 whitespace-wrap">
-			<p class="date font-light">{date}</p>
+			<p class="date font-light text-xs sm:text-base">{date}</p>
 			<Title truncate={false}>{title}</Title>
 		</div>
 		<div class="flex justify-between w-full">
