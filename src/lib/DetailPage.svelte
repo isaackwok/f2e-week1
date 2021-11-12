@@ -34,7 +34,7 @@
 	{#if item.description}
 		<div>
 			<Title>{categoryZh}介紹：</Title>
-			<p class="text-lg leading-relaxed">{item.description}</p>
+			<p class="text-lg leading-relaxed text-justify">{item.description}</p>
 		</div>
 	{/if}
 </section>

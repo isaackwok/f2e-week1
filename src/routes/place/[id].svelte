@@ -16,7 +16,7 @@
 				params: {
 					$top: 4,
 					$filter: `ID ne '${id}' and Picture/PictureUrl1 ne null`,
-					$spatialFilter: `nearby(${place.Position?.PositionLat}, ${place.Position?.PositionLon}, 5000)`
+					$spatialFilter: `nearby(${place.Position?.PositionLat}, ${place.Position?.PositionLon}, 10000)`
 				}
 			})
 			.then((res) => res.data);
