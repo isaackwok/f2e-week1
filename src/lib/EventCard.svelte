@@ -7,8 +7,8 @@
 </script>
 
 <div class="flex">
-	<div class="min-h-40 min-w-40 md:min-h-50 md:min-w-50 overflow-hidden border rounded-l-xl">
-		<img src={src || '/picture-holder.png'} alt={title} class="h-40 w-40 md:h-50 md:w-50 rounded-l-xl object-cover object-center" />
+	<div class="min-h-40 min-w-40 overflow-hidden border rounded-l-xl">
+		<img src={src || '/picture-holder.png'} alt={title} class="h-40 w-40 rounded-l-xl object-cover object-center" />
 	</div>
 	<div class="flex-1 flex flex-col justify-between py-4 px-8 bg-gray-100 w-full h-full border rounded-r-xl">
     <div class="flex flex-col gap-2 whitespace-wrap">
