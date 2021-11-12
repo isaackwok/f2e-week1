@@ -19,7 +19,9 @@
 	>
 		<div class="flex flex-col gap-2 whitespace-wrap">
 			<p class="date font-light text-xs sm:text-base">{date}</p>
-			<Title truncate={false}>{title}</Title>
+      <a {href}>
+        <Title truncate={false}>{title}</Title>
+      </a>
 		</div>
 		<div class="flex justify-between w-full text-xs sm:text-base">
 			<LocationMarker>{location}</LocationMarker>
