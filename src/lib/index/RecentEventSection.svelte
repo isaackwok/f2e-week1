@@ -6,10 +6,10 @@
 	export let items = [];
 </script>
 
-<section>
+<section class="w-full">
 	<div class="flex w-full justify-between items-center mb-4">
 		<Header>近期活動</Header>
-		<ExporeMore href="/place" color="orange">查看更多活動</ExporeMore>
+		<ExporeMore href="/event" color="orange">查看更多活動</ExporeMore>
 	</div>
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 		{#each items as event}

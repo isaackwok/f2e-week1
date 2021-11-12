@@ -9,7 +9,7 @@
 	$: top4Items = items.slice(0, 4);
 </script>
 
-<section>
+<section class="w-full">
 	<div class="flex justify-between items-center mb-4">
 		<Header>熱門打卡景點</Header>
 		<ExporeMore href="/place" color="orange">查看更多景點</ExporeMore>

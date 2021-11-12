@@ -7,7 +7,7 @@
 	export let items = [];
 </script>
 
-<section>
+<section class="w-full">
 	<div class="flex justify-between items-center mb-4">
 		<Header>一再回訪美食</Header>
 		<ExporeMore href="/food" color="orange">查看更多美食</ExporeMore>
@@ -15,7 +15,7 @@
 	<ImageCardContainer>
 		{#each items as place}
 			<ImageCard
-				href={`/place/${place.id}`}
+				href={`/food/${place.id}`}
 				src={place.src}
 				title={place.name}
 				location={place.city}

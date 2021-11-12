@@ -1,14 +1,16 @@
-<script>
-	import Navbar from '$lib/Navbar.svelte';
-	import Footer from '$lib/Footer.svelte';
+<script context="module">
 	import axios from 'axios';
 	import getAuthorizationHeader from '../api/getAuthHeader';
-
 	axios.defaults.baseURL = 'https://ptx.transportdata.tw/MOTC/v2/Tourism';
 	axios.interceptors.request.use((config) => {
 		config.headers = getAuthorizationHeader();
 		return config;
 	});
+</script>
+
+<script>
+	import Navbar from '$lib/Navbar.svelte';
+	import Footer from '$lib/Footer.svelte';
 </script>
 
 <svelte:head>
