@@ -1,4 +1,4 @@
-<span class="rounded-full text-2xl border font-light border px-2 py-1">
+<span class="rounded-full text-md border font-light border px-2 py-1">
 	# <slot />
 </span>
 
