@@ -1,5 +1,6 @@
 <script>
 	import ImageCard from '$lib/ImageCard.svelte';
+	import ImageCardContainer from '$lib/ImageCardContainer.svelte';
 	import ExporeMore from '../ExporeMore.svelte';
 	import Header from '../Header.svelte';
 
@@ -13,7 +14,7 @@
 		<Header>熱門打卡景點</Header>
 		<ExporeMore href="/place">查看更多景點</ExporeMore>
 	</div>
-	<div class="flex justify-start md:justify-between gap-4 overflow-scroll">
+	<ImageCardContainer>
 		{#each top4Items as place}
 			<ImageCard
 				href={`/place/${place.id}`}
@@ -22,5 +23,5 @@
 				location={place.city}
 			/>
 		{/each}
-	</div>
+	</ImageCardContainer>
 </section>
