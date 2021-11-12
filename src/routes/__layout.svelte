@@ -27,12 +27,12 @@
 
 <svelte:head>
 	<script defer src="/font-awesome/all.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
 <Navbar />
 
-<main class="relative container flex flex-col items-center px-4 py-4 sm:py-16 mx-auto">
+<main class="relative container flex flex-col items-center px-4 py-4 sm:py-16 mx-auto max-w-3/5">
 	<slot />
 </main>
 
