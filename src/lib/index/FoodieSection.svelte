@@ -10,7 +10,7 @@
 <section>
 	<div class="flex justify-between items-center mb-4">
 		<Header>一再回訪美食</Header>
-		<ExporeMore href="/food">查看更多美食</ExporeMore>
+		<ExporeMore href="/food" color="orange">查看更多美食</ExporeMore>
 	</div>
 	<ImageCardContainer>
 		{#each items as place}

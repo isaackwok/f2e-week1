@@ -12,7 +12,7 @@
 <section>
 	<div class="flex justify-between items-center mb-4">
 		<Header>熱門打卡景點</Header>
-		<ExporeMore href="/place">查看更多景點</ExporeMore>
+		<ExporeMore href="/place" color="orange">查看更多景點</ExporeMore>
 	</div>
 	<ImageCardContainer>
 		{#each top4Items as place}

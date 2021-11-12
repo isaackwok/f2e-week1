@@ -7,7 +7,7 @@
 	import PopularPlaceSection from '$lib/index/PopularPlaceSection.svelte';
 	import FoodieSection from '$lib/index/FoodieSection.svelte';
 
-	let places, foods;
+	let places, foods, events;
 
 	$: featureSpots =
 		places &&
@@ -31,6 +31,18 @@
 			src: place.Picture?.PictureUrl1 || null
 		}));
 
+	$: recentEvents =
+		events &&
+		events.map((event) => ({
+			id: event.ID,
+			city: event.Location.slice(0, 3),
+			name: event.Name,
+      date: `${event.StartTime.split('T')[0]} - ${event.EndTime.split('T')[0]}`,
+			label: event.City || `${event.Location.slice(0, 3)} | ${event.Name}`,
+			href: `/event/${event.ID}`,
+			src: event.Picture?.PictureUrl1 || null
+		}));
+
 	onMount(() => {
 		// 熱門景點
 		axios
@@ -47,18 +59,29 @@
 			});
 
 		// 美食
-
 		axios
 			.get('/Restaurant', {
 				params: {
 					$top: 4,
 					$select: 'ID,Address,Picture,Name',
 					$format: 'JSON',
-					$orderby: 'UpdateTime'
 				}
 			})
 			.then((res) => {
 				foods = res.data;
+			});
+
+		// 活動
+		axios
+			.get('/Activity', {
+				params: {
+					$top: 4,
+					$select: 'ID,Location,Picture,Name,StartTime,EndTime',
+					$format: 'JSON',
+				}
+			})
+			.then((res) => {
+				events = res.data;
 			});
 	});
 </script>
@@ -66,7 +89,7 @@
 <div class="grid grid-cols-1 gap-16 w-full">
 	<HeroSection />
 	<FeatureSection items={featureSpots} />
-	<RecentEventSection />
+	<RecentEventSection items={recentEvents}/>
 	<PopularPlaceSection items={featureSpots} />
-	<FoodieSection items={foodie}/>
+	<FoodieSection items={foodie} />
 </div>

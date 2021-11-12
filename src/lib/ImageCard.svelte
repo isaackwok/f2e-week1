@@ -7,7 +7,7 @@
 
 <a class="flex flex-col h-60 w-65" {href}>
 	<div class="h-50 w-65 mb-2 rounded-xl overflow-hidden z-10">
-		<img {src} alt="" class="h-50 w-65 rounded-xl" />
+		<img src={src || '/picture-holder.png'} alt="" class="h-50 w-65 rounded-xl" />
 	</div>
 	<Title>{title}</Title>
 	<LocationMarker>{location}</LocationMarker>

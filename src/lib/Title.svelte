@@ -1,4 +1,8 @@
-<div class="title font-bold text-xl truncate">
+<script>
+  export let truncate = true;
+</script>
+
+<div class="title font-bold text-xl" class:truncate>
   <slot />
 </div>
 
