@@ -7,18 +7,26 @@
 </script>
 
 <div class="flex">
-	<div class="min-h-40 min-w-40 overflow-hidden border rounded-l-xl">
-		<img src={src || '/picture-holder.png'} alt={title} class="h-40 w-40 rounded-l-xl object-cover object-center" />
+	<div class="min-h-30 min-w-30 sm:min-h-40 sm:min-w-40 overflow-hidden border rounded-l-xl">
+		<img
+			src={src || '/picture-holder.png'}
+			alt={title}
+			class="h-30 w-30 sm:h-40 sm:w-40 rounded-xl sm:rounded-l-xl object-cover object-center"
+		/>
 	</div>
-	<div class="flex-1 flex flex-col justify-between py-4 px-8 bg-gray-100 w-full h-full border rounded-r-xl">
-    <div class="flex flex-col gap-2 whitespace-wrap">
-      <p class="date font-light">{date}</p>
-      <Title truncate={false}>{title}</Title>
-    </div>
-    <div class="flex justify-between w-full">
-      <LocationMarker>{location}</LocationMarker>
-      <ExporeMore {href} color="green">詳細介紹</ExporeMore>
-    </div>
+	<div
+		class="flex-1 flex flex-col justify-between py-4 px-8 w-full h-full sm:bg-gray-100 sm:border rounded-r-xl"
+	>
+		<div class="flex flex-col gap-2 whitespace-wrap">
+			<p class="date font-light">{date}</p>
+			<Title truncate={false}>{title}</Title>
+		</div>
+		<div class="flex justify-between w-full">
+			<LocationMarker>{location}</LocationMarker>
+			<div class="hidden sm:block">
+				<ExporeMore {href} color="green">詳細介紹</ExporeMore>
+			</div>
+		</div>
 	</div>
 </div>
 
