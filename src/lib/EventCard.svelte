@@ -7,11 +7,11 @@
 </script>
 
 <div class="flex">
-	<div class="min-h-30 min-w-30 sm:min-h-40 sm:min-w-40 overflow-hidden border rounded-l-xl">
+	<div class="min-h-30 min-w-30 sm:min-h-40 sm:min-w-40 overflow-hidden sm:border rounded-l-xl">
 		<img
 			src={src || '/picture-holder.png'}
 			alt={title}
-			class="h-30 w-30 sm:h-40 sm:w-40 rounded-xl sm:rounded-l-xl object-cover object-center"
+			class="h-30 w-30 sm:h-40 sm:w-40 rounded-xl sm:rounded-r-none sm:rounded-l-xl object-cover object-center"
 		/>
 	</div>
 	<div
