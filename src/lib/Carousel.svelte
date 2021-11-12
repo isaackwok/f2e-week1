@@ -26,16 +26,14 @@
 	<!-- Slides -->
 	{#each items as item, idx}
 		{#if idx === currentIndex}
-			<a
-				href={item.href}
-				transition:slide|local
-				class="relative flex w-full h-full rounded-xl"
-			>
-				<p
-					class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl"
-				>
-					{item.label}
-				</p>
+			<a href={item.href} transition:slide|local class="relative flex w-full h-full rounded-xl">
+				{#if item.label}
+					<p
+						class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl"
+					>
+						{item.label}
+					</p>
+				{/if}
 				<img
 					class="object-cover object-center w-full h-full"
 					src={item.src || '/picture-holder.png'}
@@ -46,27 +44,31 @@
 	{/each}
 
 	<!-- Indicators-->
-	<div class="absolute flex items-center justify-between inset-y-0 left-0 px-4">
-		<div class="indicator" on:click={() => handleSlide(-1)}>
-			<i class="fas fa-chevron-left" />
+	{#if items.length > 1}
+		<div class="absolute flex items-center justify-between inset-y-0 left-0 px-4">
+			<div class="indicator" on:click={() => handleSlide(-1)}>
+				<i class="fas fa-chevron-left" />
+			</div>
 		</div>
-	</div>
-	<div class="absolute flex items-center justify-between inset-y-0 right-0 px-4">
-		<div class="indicator" on:click={() => handleSlide(1)}>
-			<i class="fas fa-chevron-right" />
+		<div class="absolute flex items-center justify-between inset-y-0 right-0 px-4">
+			<div class="indicator" on:click={() => handleSlide(1)}>
+				<i class="fas fa-chevron-right" />
+			</div>
 		</div>
-	</div>
+	{/if}
 
 	<!-- Dots -->
-	<div class="absolute right-4 bottom-2 flex">
-		{#each items as _, idx}
-			<div
-				class:bg-opacity-40={idx !== currentIndex}
-        on:click={() => setIndex(idx)}
-				class="m-1 bg-white shadow rounded-full h-2 w-2 sm:h-4 sm:w-4 cursor-pointer"
-			/>
-		{/each}
-	</div>
+	{#if items.length > 1}
+		<div class="absolute right-4 bottom-2 flex">
+			{#each items as _, idx}
+				<div
+					class:bg-opacity-40={idx !== currentIndex}
+					on:click={() => setIndex(idx)}
+					class="m-1 bg-white shadow rounded-full h-2 w-2 sm:h-4 sm:w-4 cursor-pointer"
+				/>
+			{/each}
+		</div>
+	{/if}
 </div>
 
 <style>
