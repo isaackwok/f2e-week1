@@ -15,7 +15,7 @@
 		/>
 	</div>
 	<div
-		class="flex-1 flex flex-col justify-between py-4 px-8 w-full h-full sm:bg-gray-100 sm:border rounded-r-xl"
+		class="flex-1 flex flex-col justify-between sm:py-4 px-8 w-full h-full sm:bg-gray-100 sm:border rounded-r-xl"
 	>
 		<div class="flex flex-col gap-2 whitespace-wrap">
 			<p class="date font-light">{date}</p>
