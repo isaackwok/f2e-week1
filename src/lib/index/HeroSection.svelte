@@ -19,11 +19,11 @@
 
 <section class="flex flex-col justify-evenly sm:flex-row w-full justify-around gap-4">
 	<div class="font-light">
-		<div class="text-3xl sm:text-5xl leading-normal text-center sm:text-left">
-			<p>探索<span class="slogan-highlight">台灣之美</span></p>
+		<div class="text-3xl sm:text-5xl text-center sm:text-left">
+			<p class="mb-4">探索<span class="slogan-highlight">台灣之美</span></p>
 			<p>讓我們更親近這片土地</p>
 		</div>
-		<div class="intro text-lg">
+		<div class="intro text-lg text-center sm:text-left">
 			<img src="/map-pin.svg" alt="" class="inline" />
 			台灣旅遊景點導覧 Taiwan Travel Guide
 		</div>
