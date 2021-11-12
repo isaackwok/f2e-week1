@@ -6,7 +6,7 @@
 </script>
 
 <a class="flex flex-col h-60 w-65" {href}>
-	<div class="h-50 w-65 mb-2 rounded-xl overflow-hidden z-10">
+	<div class="min-h-50 min-w-65 mb-2 rounded-xl overflow-hidden z-10">
 		<img src={src || '/picture-holder.png'} alt="" class="h-50 w-65 rounded-xl" />
 	</div>
 	<Title>{title}</Title>
