@@ -21,7 +21,7 @@
 			<p class="date font-light text-xs sm:text-base">{date}</p>
 			<Title truncate={false}>{title}</Title>
 		</div>
-		<div class="flex justify-between w-full">
+		<div class="flex justify-between w-full text-xs sm:text-base">
 			<LocationMarker>{location}</LocationMarker>
 			<div class="hidden sm:block">
 				<ExporeMore {href} color="green">詳細介紹</ExporeMore>
