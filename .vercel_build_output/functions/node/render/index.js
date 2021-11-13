@@ -4692,9 +4692,9 @@ var init_install_fetch = __esm({
   }
 });
 
-// node_modules/@sveltejs/adapter-netlify/files/shims.js
+// node_modules/@sveltejs/adapter-vercel/files/shims.js
 var init_shims = __esm({
-  "node_modules/@sveltejs/adapter-netlify/files/shims.js"() {
+  "node_modules/@sveltejs/adapter-vercel/files/shims.js"() {
     init_install_fetch();
   }
 });
@@ -9684,12 +9684,12 @@ function is_content_type_textual(content_type) {
 }
 async function render_endpoint(request, route, match) {
   const mod = await route.load();
-  const handler2 = mod[request.method.toLowerCase().replace("delete", "del")];
-  if (!handler2) {
+  const handler = mod[request.method.toLowerCase().replace("delete", "del")];
+  if (!handler) {
     return;
   }
   const params = route.params(match);
-  const response = await handler2({ ...request, params });
+  const response = await handler({ ...request, params });
   const preface = `Invalid response from route ${request.path}`;
   if (!response) {
     return;
@@ -11288,67 +11288,81 @@ ${``}`;
   }
 });
 
-// .svelte-kit/netlify/entry.js
+// .svelte-kit/vercel/entry.js
 __export(exports, {
-  handler: () => handler
+  default: () => entry_default
 });
 init_shims();
+
+// node_modules/@sveltejs/kit/dist/node.js
+init_shims();
+function getRawBody(req) {
+  return new Promise((fulfil, reject) => {
+    const h2 = req.headers;
+    if (!h2["content-type"]) {
+      return fulfil(null);
+    }
+    req.on("error", reject);
+    const length = Number(h2["content-length"]);
+    if (isNaN(length) && h2["transfer-encoding"] == null) {
+      return fulfil(null);
+    }
+    let data = new Uint8Array(length || 0);
+    if (length > 0) {
+      let offset = 0;
+      req.on("data", (chunk) => {
+        const new_len = offset + Buffer.byteLength(chunk);
+        if (new_len > length) {
+          return reject({
+            status: 413,
+            reason: 'Exceeded "Content-Length" limit'
+          });
+        }
+        data.set(chunk, offset);
+        offset = new_len;
+      });
+    } else {
+      req.on("data", (chunk) => {
+        const new_data = new Uint8Array(data.length + chunk.length);
+        new_data.set(data, 0);
+        new_data.set(chunk, data.length);
+        data = new_data;
+      });
+    }
+    req.on("end", () => {
+      fulfil(data);
+    });
+  });
+}
 
 // .svelte-kit/output/server/app.js
 init_shims();
 init_app_f8d6d072();
 
-// .svelte-kit/netlify/entry.js
+// .svelte-kit/vercel/entry.js
 init();
-async function handler(event) {
-  const { path, httpMethod, headers, rawQuery, body, isBase64Encoded } = event;
-  const query = new URLSearchParams(rawQuery);
-  const encoding = isBase64Encoded ? "base64" : headers["content-encoding"] || "utf-8";
-  const rawBody = typeof body === "string" ? Buffer.from(body, encoding) : body;
+var entry_default = async (req, res) => {
+  const { pathname, searchParams } = new URL(req.url || "", "http://localhost");
+  let body;
+  try {
+    body = await getRawBody(req);
+  } catch (err) {
+    res.statusCode = err.status || 400;
+    return res.end(err.reason || "Invalid request body");
+  }
   const rendered = await render({
-    method: httpMethod,
-    headers,
-    path,
-    query,
-    rawBody
+    method: req.method,
+    headers: req.headers,
+    path: pathname,
+    query: searchParams,
+    rawBody: body
   });
-  if (!rendered) {
-    return {
-      statusCode: 404,
-      body: "Not found"
-    };
+  if (rendered) {
+    const { status, headers, body: body2 } = rendered;
+    return res.writeHead(status, headers).end(body2);
   }
-  const partial_response = {
-    statusCode: rendered.status,
-    ...split_headers(rendered.headers)
-  };
-  if (rendered.body instanceof Uint8Array) {
-    return {
-      ...partial_response,
-      isBase64Encoded: true,
-      body: Buffer.from(rendered.body).toString("base64")
-    };
-  }
-  return {
-    ...partial_response,
-    body: rendered.body
-  };
-}
-function split_headers(headers) {
-  const h2 = {};
-  const m2 = {};
-  for (const key in headers) {
-    const value = headers[key];
-    const target = Array.isArray(value) ? m2 : h2;
-    target[key] = value;
-  }
-  return {
-    headers: h2,
-    multiValueHeaders: m2
-  };
-}
+  return res.writeHead(404).end();
+};
 // Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  handler
-});
+0 && (module.exports = {});
 /*! fetch-blob. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */

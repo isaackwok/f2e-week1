@@ -85,6 +85,13 @@
     "@iarna/toml" "^2.2.5"
     esbuild "^0.13.4"
 
+"@sveltejs/adapter-vercel@^1.0.0-next.31":
+  version "1.0.0-next.31"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-vercel/-/adapter-vercel-1.0.0-next.31.tgz#89f550871dbdbf58bb4b6039218cbd0c14c47127"
+  integrity sha512-W8p/U00B6ihVrDpwMkgEexfVUzaLmn4MRtXj//Gw4NDFfsrZR4P5wBidrOAIkCYBMvqCOHD+vbAvIiAMOaN23g==
+  dependencies:
+    esbuild "^0.13.4"
+
 "@sveltejs/kit@next":
   version "1.0.0-next.195"
   resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.195.tgz#788e6e3f53d857e7f836f2350bfd3d4366ee055c"
