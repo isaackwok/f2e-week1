@@ -41,7 +41,7 @@
 
 <!-- Details -->
 <section class="grid grid-cols-1 sm:grid-cols-2 bg-gray-100 sm:bg-transparent w-screen sm:w-full p-4 mb-4">
-  asd
+  <!-- asd -->
 </section>
   
 <!-- More (Nearby) -->
