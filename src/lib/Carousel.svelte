@@ -26,7 +26,7 @@
 	<!-- Slides -->
 	{#each items as item, idx}
 		{#if idx === currentIndex}
-			<a href={item.href} transition:slide|local class="relative flex w-full h-full rounded-xl">
+			<a sveltekit:prefetch href={item.href} transition:slide|local class="relative flex w-full h-full rounded-xl">
 				{#if item.label}
 					<p
 						class="absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl"

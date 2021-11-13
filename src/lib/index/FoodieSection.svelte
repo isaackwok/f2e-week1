@@ -1,7 +1,7 @@
 <script>
 	import ImageCard from '$lib/ImageCard.svelte';
 	import ImageCardContainer from '$lib/ImageCardContainer.svelte';
-	import ExporeMore from '../ExporeMore.svelte';
+	import ExploreMore from '../ExploreMore.svelte';
 	import Header from '../Header.svelte';
 
 	export let items = [];
@@ -10,7 +10,7 @@
 <section class="w-full">
 	<div class="flex justify-between items-center mb-4">
 		<Header>一再回訪美食</Header>
-		<ExporeMore href="/food" color="orange">查看更多美食</ExporeMore>
+		<ExploreMore href="/food" color="orange">查看更多美食</ExploreMore>
 	</div>
 	<ImageCardContainer>
 		{#each items as place}

@@ -1,6 +1,6 @@
 <script>
 	import EventCard from '$lib/EventCard.svelte';
-	import ExporeMore from '../ExporeMore.svelte';
+	import ExploreMore from '../ExploreMore.svelte';
 	import Header from '../Header.svelte';
 
 	export let items = [];
@@ -9,7 +9,7 @@
 <section class="w-full">
 	<div class="flex w-full justify-between items-center mb-4">
 		<Header>近期活動</Header>
-		<ExporeMore href="/event" color="orange">查看更多活動</ExporeMore>
+		<ExploreMore href="/event" color="orange">查看更多活動</ExploreMore>
 	</div>
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 		{#each items as event}

@@ -5,7 +5,7 @@
 	export let src, title, location, href;
 </script>
 
-<a class="flex flex-col w-65" {href}>
+<a sveltekit:prefetch class="flex flex-col w-65" {href}>
 	<div class="min-h-50 min-w-65 mb-2 rounded-xl overflow-hidden z-10">
 		<img src={src || '/picture-holder.png'} alt="" class="h-50 w-65 rounded-xl" />
 	</div>

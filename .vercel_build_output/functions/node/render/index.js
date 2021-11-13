@@ -7991,16 +7991,16 @@ var require_axios2 = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/__layout-91b7aaf7.js
-var layout_91b7aaf7_exports = {};
-__export(layout_91b7aaf7_exports, {
+// .svelte-kit/output/server/chunks/__layout-f614c0e5.js
+var layout_f614c0e5_exports = {};
+__export(layout_f614c0e5_exports, {
   default: () => _layout
 });
 var import_axios, getAuthorizationHeader, Logo, css$2, Navbar, css$1, Footer, css, _layout;
-var init_layout_91b7aaf7 = __esm({
-  ".svelte-kit/output/server/chunks/__layout-91b7aaf7.js"() {
+var init_layout_f614c0e5 = __esm({
+  ".svelte-kit/output/server/chunks/__layout-f614c0e5.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     init_sha();
     import_axios = __toModule(require_axios2());
     getAuthorizationHeader = function() {
@@ -8064,9 +8064,9 @@ ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/error-a8490e75.js
-var error_a8490e75_exports = {};
-__export(error_a8490e75_exports, {
+// .svelte-kit/output/server/chunks/error-6765b4e5.js
+var error_6765b4e5_exports = {};
+__export(error_6765b4e5_exports, {
   default: () => Error2,
   load: () => load
 });
@@ -8074,10 +8074,10 @@ function load({ error: error2, status }) {
   return { props: { error: error2, status } };
 }
 var Error2;
-var init_error_a8490e75 = __esm({
-  ".svelte-kit/output/server/chunks/error-a8490e75.js"() {
+var init_error_6765b4e5 = __esm({
+  ".svelte-kit/output/server/chunks/error-6765b4e5.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -8097,12 +8097,12 @@ ${error2.stack ? `<pre>${escape(error2.stack)}</pre>` : ``}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/ImageCardContainer-7bca39b0.js
-var css$6, Carousel, css$5, LocationMarker, css$4, Title, css$3, ExporeMore, css$22, Header, css$12, ImageCard, css2, ImageCardContainer;
-var init_ImageCardContainer_7bca39b0 = __esm({
-  ".svelte-kit/output/server/chunks/ImageCardContainer-7bca39b0.js"() {
+// .svelte-kit/output/server/chunks/ImageCardContainer-ff512a0a.js
+var css$6, Carousel, css$5, LocationMarker, css$4, Title, css$3, ExploreMore, css$22, Header, css$12, ImageCard, css2, ImageCardContainer;
+var init_ImageCardContainer_ff512a0a = __esm({
+  ".svelte-kit/output/server/chunks/ImageCardContainer-ff512a0a.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     css$6 = {
       code: ".indicator.svelte-tqqw5d{border-radius:9999px;border-width:2px;cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:2rem;padding:0.25rem;--tw-shadow-color:0, 0, 0;--tw-shadow:0 10px 15px -3px rgba(var(--tw-shadow-color), 0.1), 0 4px 6px -2px rgba(var(--tw-shadow-color), 0.05);-webkit-box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);--tw-text-opacity:1;color:rgba(255, 255, 255, var(--tw-text-opacity));width:2rem}@media(min-width: 640px){.indicator.svelte-tqqw5d{height:3rem;width:3rem}}.bg-white.svelte-tqqw5d{--tw-bg-opacity:1;background-color:rgba(255, 255, 255, var(--tw-bg-opacity))}.bg-opacity-40.svelte-tqqw5d{--tw-bg-opacity:0.4}.rounded-xl.svelte-tqqw5d{border-radius:0.75rem}.rounded-full.svelte-tqqw5d{border-radius:9999px}.cursor-pointer.svelte-tqqw5d{cursor:pointer}.flex.svelte-tqqw5d{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.items-center.svelte-tqqw5d{-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center}.self-center.svelte-tqqw5d{-ms-flex-item-align:center;-ms-grid-row-align:center;-webkit-align-self:center;align-self:center}.justify-between.svelte-tqqw5d{-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;justify-content:space-between}.h-full.svelte-tqqw5d{height:100%}.h-2.svelte-tqqw5d{height:0.5rem}.text-xl.svelte-tqqw5d{font-size:1.25rem;line-height:1.75rem}.m-1.svelte-tqqw5d{margin:0.25rem}.object-cover.svelte-tqqw5d{-o-object-fit:cover;object-fit:cover}.object-center.svelte-tqqw5d{-o-object-position:center;object-position:center}.overflow-hidden.svelte-tqqw5d{overflow:hidden}.px-4.svelte-tqqw5d{padding-left:1rem;padding-right:1rem}.absolute.svelte-tqqw5d{position:absolute}.relative.svelte-tqqw5d{position:relative}.inset-y-0.svelte-tqqw5d{top:0px;bottom:0px}.left-0.svelte-tqqw5d{left:0px}.right-0.svelte-tqqw5d{right:0px}.right-4.svelte-tqqw5d{right:1rem}.bottom-2.svelte-tqqw5d{bottom:0.5rem}.shadow.svelte-tqqw5d{--tw-shadow-color:0, 0, 0;--tw-shadow:0 1px 3px 0 rgba(var(--tw-shadow-color), 0.1), 0 1px 2px 0 rgba(var(--tw-shadow-color), 0.06);-webkit-box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.text-center.svelte-tqqw5d{text-align:center}.text-white.svelte-tqqw5d{--tw-text-opacity:1;color:rgba(255, 255, 255, var(--tw-text-opacity))}.text-shadow-xl.svelte-tqqw5d{text-shadow:1px 1px 3px rgb(0 0 0 / 29%), 2px 4px 7px rgb(73 64 125 / 35%)}.w-full.svelte-tqqw5d{width:100%}.w-2.svelte-tqqw5d{width:0.5rem}@media(min-width: 640px){.sm\\:h-4.svelte-tqqw5d{height:1rem}.sm\\:text-3xl.svelte-tqqw5d{font-size:1.875rem;line-height:2.25rem}.sm\\:w-4.svelte-tqqw5d{width:1rem}}",
       map: null
@@ -8113,7 +8113,7 @@ var init_ImageCardContainer_7bca39b0 = __esm({
       if ($$props.items === void 0 && $$bindings.items && items !== void 0)
         $$bindings.items(items);
       $$result.css.add(css$6);
-      return `<div class="${"relative overflow-hidden w-full h-full rounded-xl svelte-tqqw5d"}">${each(items, (item, idx) => `${idx === currentIndex ? `<a${add_attribute("href", item.href, 0)} class="${"relative flex w-full h-full rounded-xl svelte-tqqw5d"}">${item.label ? `<p class="${"absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl svelte-tqqw5d"}">${escape(item.label)}
+      return `<div class="${"relative overflow-hidden w-full h-full rounded-xl svelte-tqqw5d"}">${each(items, (item, idx) => `${idx === currentIndex ? `<a sveltekit:prefetch${add_attribute("href", item.href, 0)} class="${"relative flex w-full h-full rounded-xl svelte-tqqw5d"}">${item.label ? `<p class="${"absolute self-center w-full text-center text-white text-shadow-xl text-xl sm:text-3xl svelte-tqqw5d"}">${escape(item.label)}
 					</p>` : ``}
 				<img class="${"object-cover object-center w-full h-full svelte-tqqw5d"}"${add_attribute("src", item.src || "/picture-holder.png", 0)} alt="${""}">
 			</a>` : ``}`)}
@@ -8155,7 +8155,7 @@ var init_ImageCardContainer_7bca39b0 = __esm({
       code: "a.orange.svelte-e504ev{color:#ff725e}a.green.svelte-e504ev{color:#7F977B}.font-light.svelte-e504ev{font-weight:300}",
       map: null
     };
-    ExporeMore = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    ExploreMore = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { href, color } = $$props;
       if ($$props.href === void 0 && $$bindings.href && href !== void 0)
         $$bindings.href(href);
@@ -8189,7 +8189,7 @@ var init_ImageCardContainer_7bca39b0 = __esm({
       if ($$props.href === void 0 && $$bindings.href && href !== void 0)
         $$bindings.href(href);
       $$result.css.add(css$12);
-      return `<a class="${"flex flex-col w-65 svelte-1hw0alb"}"${add_attribute("href", href, 0)}><div class="${"min-h-50 min-w-65 mb-2 rounded-xl overflow-hidden z-10 svelte-1hw0alb"}"><img${add_attribute("src", src2 || "/picture-holder.png", 0)} alt="${""}" class="${"h-50 w-65 rounded-xl svelte-1hw0alb"}"></div>
+      return `<a sveltekit:prefetch class="${"flex flex-col w-65 svelte-1hw0alb"}"${add_attribute("href", href, 0)}><div class="${"min-h-50 min-w-65 mb-2 rounded-xl overflow-hidden z-10 svelte-1hw0alb"}"><img${add_attribute("src", src2 || "/picture-holder.png", 0)} alt="${""}" class="${"h-50 w-65 rounded-xl svelte-1hw0alb"}"></div>
 	${validate_component(Title, "Title").$$render($$result, {}, {}, { default: () => `${escape(title)}` })}
 	${validate_component(LocationMarker, "LocationMarker").$$render($$result, {}, {}, { default: () => `${escape(location)}` })}
 </a>`;
@@ -8206,9 +8206,9 @@ var init_ImageCardContainer_7bca39b0 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-248e85bd.js
-var index_248e85bd_exports = {};
-__export(index_248e85bd_exports, {
+// .svelte-kit/output/server/chunks/index-fceee890.js
+var index_fceee890_exports = {};
+__export(index_fceee890_exports, {
   default: () => Routes
 });
 function isOutOfViewport(elem) {
@@ -8256,12 +8256,12 @@ function convertStringItemsToObjects(_items) {
   });
 }
 var import_axios2, css$f, Item, css$e, List, css$d, Selection, css$c, MultiSelection, css$b, VirtualList, ClearIcon, Object_1, css$a, Select, css$9, Dropdown, css$8, SearchBar, css$7, Button, css$62, HeroSection, css$52, FeatureSection, css$42, EventCard, css$32, RecentEventSection, css$23, PopularPlaceSection, css$13, FoodieSection, css3, Routes;
-var init_index_248e85bd = __esm({
-  ".svelte-kit/output/server/chunks/index-248e85bd.js"() {
+var init_index_fceee890 = __esm({
+  ".svelte-kit/output/server/chunks/index-fceee890.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     import_axios2 = __toModule(require_axios2());
-    init_ImageCardContainer_7bca39b0();
+    init_ImageCardContainer_ff512a0a();
     css$f = {
       code: ".item.svelte-12kv145{cursor:default;height:var(--height, 42px);line-height:var(--height, 42px);padding:var(--itemPadding, 0 20px);color:var(--itemColor, inherit);text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.groupHeader.svelte-12kv145{text-transform:var(--groupTitleTextTransform, uppercase)}.groupItem.svelte-12kv145{padding-left:var(--groupItemPaddingLeft, 40px)}.item.svelte-12kv145:active{background:var(--itemActiveBackground, #b9daff)}.item.active.svelte-12kv145{background:var(--itemIsActiveBG, #007aff);color:var(--itemIsActiveColor, #fff)}.item.notSelectable.svelte-12kv145{color:var(--itemIsNotSelectableColor, #999)}.item.first.svelte-12kv145{border-radius:var(--itemFirstBorderRadius, 4px 4px 0 0)}.item.hover.svelte-12kv145:not(.active){background:var(--itemHoverBG, #e7f2ff);color:var(--itemHoverColor, inherit)}",
       map: null
@@ -9214,9 +9214,9 @@ var init_index_248e85bd = __esm({
       $$result.css.add(css$42);
       return `<div class="${"flex svelte-1wk3x5c"}"><div class="${"min-h-30 min-w-30 sm:min-h-40 sm:min-w-40 overflow-hidden sm:border rounded-l-xl svelte-1wk3x5c"}"><img${add_attribute("src", src2 || "/picture-holder.png", 0)}${add_attribute("alt", title, 0)} class="${"h-30 w-30 sm:h-40 sm:w-40 rounded-xl sm:rounded-r-none sm:rounded-l-xl object-cover object-center svelte-1wk3x5c"}"></div>
 	<div class="${"flex-1 flex flex-col justify-between sm:py-4 px-4 sm:px-8 w-full h-full sm:bg-gray-100 sm:border rounded-r-xl svelte-1wk3x5c"}"><div class="${"flex flex-col gap-2 whitespace-wrap svelte-1wk3x5c"}"><p class="${"date font-light text-xs sm:text-base svelte-1wk3x5c"}">${escape(date)}</p>
-      <a${add_attribute("href", href, 0)}>${validate_component(Title, "Title").$$render($$result, { truncate: false }, {}, { default: () => `${escape(title)}` })}</a></div>
+      <a sveltekit:prefetch${add_attribute("href", href, 0)}>${validate_component(Title, "Title").$$render($$result, { truncate: false }, {}, { default: () => `${escape(title)}` })}</a></div>
 		<div class="${"flex justify-between w-full text-xs sm:text-base svelte-1wk3x5c"}">${validate_component(LocationMarker, "LocationMarker").$$render($$result, {}, {}, { default: () => `${escape(location)}` })}
-			<div class="${"hidden sm:block svelte-1wk3x5c"}">${validate_component(ExporeMore, "ExporeMore").$$render($$result, { href, color: "green" }, {}, { default: () => `\u8A73\u7D30\u4ECB\u7D39` })}</div></div></div>
+			<div class="${"hidden sm:block svelte-1wk3x5c"}">${validate_component(ExploreMore, "ExploreMore").$$render($$result, { href, color: "green" }, {}, { default: () => `\u8A73\u7D30\u4ECB\u7D39` })}</div></div></div>
 </div>`;
     });
     css$32 = {
@@ -9229,7 +9229,7 @@ var init_index_248e85bd = __esm({
         $$bindings.items(items);
       $$result.css.add(css$32);
       return `<section class="${"w-full svelte-wp9clu"}"><div class="${"flex w-full justify-between items-center mb-4 svelte-wp9clu"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `\u8FD1\u671F\u6D3B\u52D5` })}
-		${validate_component(ExporeMore, "ExporeMore").$$render($$result, { href: "/event", color: "orange" }, {}, { default: () => `\u67E5\u770B\u66F4\u591A\u6D3B\u52D5` })}</div>
+		${validate_component(ExploreMore, "ExploreMore").$$render($$result, { href: "/event", color: "orange" }, {}, { default: () => `\u67E5\u770B\u66F4\u591A\u6D3B\u52D5` })}</div>
 	<div class="${"grid grid-cols-1 md:grid-cols-2 gap-8 svelte-wp9clu"}">${each(items, (event) => `${validate_component(EventCard, "EventCard").$$render($$result, {
         src: event.src,
         date: event.date,
@@ -9251,7 +9251,7 @@ var init_index_248e85bd = __esm({
       $$result.css.add(css$23);
       top4Items = items.slice(0, 4);
       return `<section class="${"w-full svelte-1r1sa6k"}"><div class="${"flex justify-between items-center mb-4 svelte-1r1sa6k"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `\u71B1\u9580\u6253\u5361\u666F\u9EDE` })}
-		${validate_component(ExporeMore, "ExporeMore").$$render($$result, { href: "/place", color: "orange" }, {}, { default: () => `\u67E5\u770B\u66F4\u591A\u666F\u9EDE` })}</div>
+		${validate_component(ExploreMore, "ExploreMore").$$render($$result, { href: "/place", color: "orange" }, {}, { default: () => `\u67E5\u770B\u66F4\u591A\u666F\u9EDE` })}</div>
 	${validate_component(ImageCardContainer, "ImageCardContainer").$$render($$result, {}, {}, {
         default: () => `${each(top4Items, (place) => `${validate_component(ImageCard, "ImageCard").$$render($$result, {
           href: `/place/${place.id}`,
@@ -9272,7 +9272,7 @@ var init_index_248e85bd = __esm({
         $$bindings.items(items);
       $$result.css.add(css$13);
       return `<section class="${"w-full svelte-1r1sa6k"}"><div class="${"flex justify-between items-center mb-4 svelte-1r1sa6k"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `\u4E00\u518D\u56DE\u8A2A\u7F8E\u98DF` })}
-		${validate_component(ExporeMore, "ExporeMore").$$render($$result, { href: "/food", color: "orange" }, {}, { default: () => `\u67E5\u770B\u66F4\u591A\u7F8E\u98DF` })}</div>
+		${validate_component(ExploreMore, "ExploreMore").$$render($$result, { href: "/food", color: "orange" }, {}, { default: () => `\u67E5\u770B\u66F4\u591A\u7F8E\u98DF` })}</div>
 	${validate_component(ImageCardContainer, "ImageCardContainer").$$render($$result, {}, {}, {
         default: () => `${each(items, (place) => `${validate_component(ImageCard, "ImageCard").$$render($$result, {
           href: `/food/${place.id}`,
@@ -9308,29 +9308,29 @@ var init_index_248e85bd = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-14aa63ee.js
-var index_14aa63ee_exports = {};
-__export(index_14aa63ee_exports, {
+// .svelte-kit/output/server/chunks/index-fbb2bbf6.js
+var index_fbb2bbf6_exports = {};
+__export(index_fbb2bbf6_exports, {
   default: () => Event
 });
 var Event;
-var init_index_14aa63ee = __esm({
-  ".svelte-kit/output/server/chunks/index-14aa63ee.js"() {
+var init_index_fbb2bbf6 = __esm({
+  ".svelte-kit/output/server/chunks/index-fbb2bbf6.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     Event = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/DetailPage-af55ebcd.js
+// .svelte-kit/output/server/chunks/DetailPage-cb5113c8.js
 var css$14, Hashtag, css4, DetailPage;
-var init_DetailPage_af55ebcd = __esm({
-  ".svelte-kit/output/server/chunks/DetailPage-af55ebcd.js"() {
+var init_DetailPage_cb5113c8 = __esm({
+  ".svelte-kit/output/server/chunks/DetailPage-cb5113c8.js"() {
     init_shims();
-    init_app_f8d6d072();
-    init_ImageCardContainer_7bca39b0();
+    init_app_45a890be();
+    init_ImageCardContainer_ff512a0a();
     css$14 = {
       code: "span.svelte-18ghjeb{color:#bea363;border-color:#bea363}.rounded-full.svelte-18ghjeb{border-radius:9999px}.border.svelte-18ghjeb{border-width:1px}.font-light.svelte-18ghjeb{font-weight:300}.px-2.svelte-18ghjeb{padding-left:0.5rem;padding-right:0.5rem}.py-1.svelte-18ghjeb{padding-top:0.25rem;padding-bottom:0.25rem}",
       map: null
@@ -9380,7 +9380,7 @@ var init_DetailPage_af55ebcd = __esm({
   
 
 ${more.length > 0 ? `<section class="${"w-full svelte-10vvdul"}"><div class="${"flex justify-between items-center mb-4 svelte-10vvdul"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `${escape(moreHeader)}` })}
-			${validate_component(ExporeMore, "ExporeMore").$$render($$result, { href: "/" + category4, color: "orange" }, {}, { default: () => `${escape(moreText)}` })}</div>
+			${validate_component(ExploreMore, "ExploreMore").$$render($$result, { href: "/" + category4, color: "orange" }, {}, { default: () => `${escape(moreText)}` })}</div>
 		${validate_component(ImageCardContainer, "ImageCardContainer").$$render($$result, {}, {}, {
         default: () => `${each(more, (recommendation) => `${validate_component(ImageCard, "ImageCard").$$render($$result, Object.assign(recommendation), {}, {})}`)}`
       })}</section>` : ``}`;
@@ -9388,9 +9388,9 @@ ${more.length > 0 ? `<section class="${"w-full svelte-10vvdul"}"><div class="${"
   }
 });
 
-// .svelte-kit/output/server/chunks/[id]-c869f98f.js
-var id_c869f98f_exports = {};
-__export(id_c869f98f_exports, {
+// .svelte-kit/output/server/chunks/[id]-21a3aae8.js
+var id_21a3aae8_exports = {};
+__export(id_21a3aae8_exports, {
   default: () => U5Bidu5D,
   load: () => load2
 });
@@ -9414,13 +9414,13 @@ async function load2({ page }) {
   };
 }
 var import_axios3, category, categoryZh, U5Bidu5D;
-var init_id_c869f98f = __esm({
-  ".svelte-kit/output/server/chunks/[id]-c869f98f.js"() {
+var init_id_21a3aae8 = __esm({
+  ".svelte-kit/output/server/chunks/[id]-21a3aae8.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     import_axios3 = __toModule(require_axios2());
-    init_DetailPage_af55ebcd();
-    init_ImageCardContainer_7bca39b0();
+    init_DetailPage_cb5113c8();
+    init_ImageCardContainer_ff512a0a();
     category = "event";
     categoryZh = "\u6D3B\u52D5";
     U5Bidu5D = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -9462,25 +9462,25 @@ var init_id_c869f98f = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-5df25970.js
-var index_5df25970_exports = {};
-__export(index_5df25970_exports, {
+// .svelte-kit/output/server/chunks/index-e2e3ddbe.js
+var index_e2e3ddbe_exports = {};
+__export(index_e2e3ddbe_exports, {
   default: () => Place
 });
 var Place;
-var init_index_5df25970 = __esm({
-  ".svelte-kit/output/server/chunks/index-5df25970.js"() {
+var init_index_e2e3ddbe = __esm({
+  ".svelte-kit/output/server/chunks/index-e2e3ddbe.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     Place = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/[id]-3a4af4d2.js
-var id_3a4af4d2_exports = {};
-__export(id_3a4af4d2_exports, {
+// .svelte-kit/output/server/chunks/[id]-5300c44e.js
+var id_5300c44e_exports = {};
+__export(id_5300c44e_exports, {
   default: () => U5Bidu5D2,
   load: () => load3
 });
@@ -9504,13 +9504,13 @@ async function load3({ page }) {
   };
 }
 var import_axios4, category2, categoryZh2, U5Bidu5D2;
-var init_id_3a4af4d2 = __esm({
-  ".svelte-kit/output/server/chunks/[id]-3a4af4d2.js"() {
+var init_id_5300c44e = __esm({
+  ".svelte-kit/output/server/chunks/[id]-5300c44e.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     import_axios4 = __toModule(require_axios2());
-    init_DetailPage_af55ebcd();
-    init_ImageCardContainer_7bca39b0();
+    init_DetailPage_cb5113c8();
+    init_ImageCardContainer_ff512a0a();
     category2 = "place";
     categoryZh2 = "\u666F\u9EDE";
     U5Bidu5D2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -9552,25 +9552,25 @@ var init_id_3a4af4d2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-7d7777a9.js
-var index_7d7777a9_exports = {};
-__export(index_7d7777a9_exports, {
+// .svelte-kit/output/server/chunks/index-6029fabd.js
+var index_6029fabd_exports = {};
+__export(index_6029fabd_exports, {
   default: () => Food
 });
 var Food;
-var init_index_7d7777a9 = __esm({
-  ".svelte-kit/output/server/chunks/index-7d7777a9.js"() {
+var init_index_6029fabd = __esm({
+  ".svelte-kit/output/server/chunks/index-6029fabd.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     Food = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/[id]-e443e8b6.js
-var id_e443e8b6_exports = {};
-__export(id_e443e8b6_exports, {
+// .svelte-kit/output/server/chunks/[id]-9ca7fca5.js
+var id_9ca7fca5_exports = {};
+__export(id_9ca7fca5_exports, {
   default: () => U5Bidu5D3,
   load: () => load4
 });
@@ -9594,13 +9594,13 @@ async function load4({ page }) {
   };
 }
 var import_axios5, category3, categoryZh3, U5Bidu5D3;
-var init_id_e443e8b6 = __esm({
-  ".svelte-kit/output/server/chunks/[id]-e443e8b6.js"() {
+var init_id_9ca7fca5 = __esm({
+  ".svelte-kit/output/server/chunks/[id]-9ca7fca5.js"() {
     init_shims();
-    init_app_f8d6d072();
+    init_app_45a890be();
     import_axios5 = __toModule(require_axios2());
-    init_DetailPage_af55ebcd();
-    init_ImageCardContainer_7bca39b0();
+    init_DetailPage_cb5113c8();
+    init_ImageCardContainer_ff512a0a();
     category3 = "food";
     categoryZh3 = "\u7F8E\u98DF";
     U5Bidu5D3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -9642,7 +9642,7 @@ var init_id_e443e8b6 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/app-f8d6d072.js
+// .svelte-kit/output/server/chunks/app-45a890be.js
 function get_single_valued_header(headers, key) {
   const value = headers[key];
   if (Array.isArray(value)) {
@@ -10972,9 +10972,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-f1a1a75c.js",
+      file: assets + "/_app/start-31845985.js",
       css: [assets + "/_app/assets/start-1f089c51.css", assets + "/_app/assets/vendor-33dd9e65.css"],
-      js: [assets + "/_app/start-f1a1a75c.js", assets + "/_app/chunks/vendor-9f24c8b6.js"]
+      js: [assets + "/_app/start-31845985.js", assets + "/_app/chunks/vendor-9f24c8b6.js"]
     },
     fetched: void 0,
     floc: false,
@@ -11018,8 +11018,8 @@ function render(request, {
   return respond({ ...request, host }, options, { prerender });
 }
 var __accessCheck, __privateGet, __privateAdd, __privateSet, _map, chars, unsafeChars, reserved, escaped$1, objectProtoOwnPropertyNames, subscriber_queue, escape_json_string_in_html_dict, escape_html_attr_dict, s$1, s2, absolute, ReadOnlyFormData, current_component, globals, boolean_attributes, invalid_attribute_name_character, escaped, missing_component, on_destroy, css5, Root, base, assets, user_hooks, template, options, default_settings, d2, empty, manifest, get_hooks, module_lookup, metadata_lookup;
-var init_app_f8d6d072 = __esm({
-  ".svelte-kit/output/server/chunks/app-f8d6d072.js"() {
+var init_app_45a890be = __esm({
+  ".svelte-kit/output/server/chunks/app-45a890be.js"() {
     init_shims();
     __accessCheck = (obj, member, msg) => {
       if (!member.has(obj))
@@ -11274,17 +11274,17 @@ ${``}`;
       externalFetch: hooks.externalFetch || fetch
     });
     module_lookup = {
-      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_91b7aaf7(), layout_91b7aaf7_exports)),
-      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_a8490e75(), error_a8490e75_exports)),
-      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_248e85bd(), index_248e85bd_exports)),
-      "src/routes/event/index.svelte": () => Promise.resolve().then(() => (init_index_14aa63ee(), index_14aa63ee_exports)),
-      "src/routes/event/[id].svelte": () => Promise.resolve().then(() => (init_id_c869f98f(), id_c869f98f_exports)),
-      "src/routes/place/index.svelte": () => Promise.resolve().then(() => (init_index_5df25970(), index_5df25970_exports)),
-      "src/routes/place/[id].svelte": () => Promise.resolve().then(() => (init_id_3a4af4d2(), id_3a4af4d2_exports)),
-      "src/routes/food/index.svelte": () => Promise.resolve().then(() => (init_index_7d7777a9(), index_7d7777a9_exports)),
-      "src/routes/food/[id].svelte": () => Promise.resolve().then(() => (init_id_e443e8b6(), id_e443e8b6_exports))
+      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_f614c0e5(), layout_f614c0e5_exports)),
+      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_6765b4e5(), error_6765b4e5_exports)),
+      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_fceee890(), index_fceee890_exports)),
+      "src/routes/event/index.svelte": () => Promise.resolve().then(() => (init_index_fbb2bbf6(), index_fbb2bbf6_exports)),
+      "src/routes/event/[id].svelte": () => Promise.resolve().then(() => (init_id_21a3aae8(), id_21a3aae8_exports)),
+      "src/routes/place/index.svelte": () => Promise.resolve().then(() => (init_index_e2e3ddbe(), index_e2e3ddbe_exports)),
+      "src/routes/place/[id].svelte": () => Promise.resolve().then(() => (init_id_5300c44e(), id_5300c44e_exports)),
+      "src/routes/food/index.svelte": () => Promise.resolve().then(() => (init_index_6029fabd(), index_6029fabd_exports)),
+      "src/routes/food/[id].svelte": () => Promise.resolve().then(() => (init_id_9ca7fca5(), id_9ca7fca5_exports))
     };
-    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-7c0c6176.js", "css": ["assets/pages/__layout.svelte-6cfa9e99.css", "assets/vendor-33dd9e65.css"], "js": ["pages/__layout.svelte-7c0c6176.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-095e4a09.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["error.svelte-095e4a09.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-3e29780c.js", "css": ["assets/pages/index.svelte-21627872.css", "assets/vendor-33dd9e65.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/index.svelte-3e29780c.js", "chunks/vendor-9f24c8b6.js", "chunks/ImageCardContainer-30b3de4f.js"], "styles": [] }, "src/routes/event/index.svelte": { "entry": "pages/event/index.svelte-99381052.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/event/index.svelte-99381052.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/event/[id].svelte": { "entry": "pages/event/[id].svelte-eaab9052.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/event/[id].svelte-eaab9052.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-8c6bb976.js", "chunks/ImageCardContainer-30b3de4f.js"], "styles": [] }, "src/routes/place/index.svelte": { "entry": "pages/place/index.svelte-a2a0db7f.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/place/index.svelte-a2a0db7f.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/place/[id].svelte": { "entry": "pages/place/[id].svelte-0c0ba1fc.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/place/[id].svelte-0c0ba1fc.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-8c6bb976.js", "chunks/ImageCardContainer-30b3de4f.js"], "styles": [] }, "src/routes/food/index.svelte": { "entry": "pages/food/index.svelte-faad526e.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/food/index.svelte-faad526e.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/food/[id].svelte": { "entry": "pages/food/[id].svelte-30d5a478.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/food/[id].svelte-30d5a478.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-8c6bb976.js", "chunks/ImageCardContainer-30b3de4f.js"], "styles": [] } };
+    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-7c0c6176.js", "css": ["assets/pages/__layout.svelte-6cfa9e99.css", "assets/vendor-33dd9e65.css"], "js": ["pages/__layout.svelte-7c0c6176.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-095e4a09.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["error.svelte-095e4a09.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-e245db33.js", "css": ["assets/pages/index.svelte-21627872.css", "assets/vendor-33dd9e65.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/index.svelte-e245db33.js", "chunks/vendor-9f24c8b6.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] }, "src/routes/event/index.svelte": { "entry": "pages/event/index.svelte-99381052.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/event/index.svelte-99381052.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/event/[id].svelte": { "entry": "pages/event/[id].svelte-81f1b279.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/event/[id].svelte-81f1b279.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-4d19cf97.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] }, "src/routes/place/index.svelte": { "entry": "pages/place/index.svelte-a2a0db7f.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/place/index.svelte-a2a0db7f.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/place/[id].svelte": { "entry": "pages/place/[id].svelte-8413840d.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/place/[id].svelte-8413840d.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-4d19cf97.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] }, "src/routes/food/index.svelte": { "entry": "pages/food/index.svelte-faad526e.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/food/index.svelte-faad526e.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/food/[id].svelte": { "entry": "pages/food/[id].svelte-21d21901.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/food/[id].svelte-21d21901.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-4d19cf97.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] } };
   }
 });
 
@@ -11337,7 +11337,7 @@ function getRawBody(req) {
 
 // .svelte-kit/output/server/app.js
 init_shims();
-init_app_f8d6d072();
+init_app_45a890be();
 
 // .svelte-kit/vercel/entry.js
 init();

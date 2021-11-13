@@ -1,7 +1,7 @@
 <script>
 	import LocationMarker from './LocationMarker.svelte';
 	import Title from './Title.svelte';
-	import ExporeMore from './ExporeMore.svelte';
+	import ExploreMore from './ExploreMore.svelte';
 
 	export let src, date, title, location, href;
 </script>
@@ -19,14 +19,14 @@
 	>
 		<div class="flex flex-col gap-2 whitespace-wrap">
 			<p class="date font-light text-xs sm:text-base">{date}</p>
-      <a {href}>
+      <a sveltekit:prefetch {href}>
         <Title truncate={false}>{title}</Title>
       </a>
 		</div>
 		<div class="flex justify-between w-full text-xs sm:text-base">
 			<LocationMarker>{location}</LocationMarker>
 			<div class="hidden sm:block">
-				<ExporeMore {href} color="green">詳細介紹</ExporeMore>
+				<ExploreMore {href} color="green">詳細介紹</ExploreMore>
 			</div>
 		</div>
 	</div>

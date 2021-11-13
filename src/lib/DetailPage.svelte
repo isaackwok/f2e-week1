@@ -1,7 +1,7 @@
 <script>
 	import { toggle_class } from 'svelte/internal';
 	import Carousel from './Carousel.svelte';
-	import ExporeMore from './ExporeMore.svelte';
+	import ExploreMore from './ExploreMore.svelte';
 	import Hashtag from './Hashtag.svelte';
 	import Header from './Header.svelte';
 	import ImageCard from './ImageCard.svelte';
@@ -39,12 +39,17 @@
 	{/if}
 </section>
 
+<!-- Details -->
+<section class="grid grid-cols-1 sm:grid-cols-2 bg-gray-100 sm:bg-transparent w-screen sm:w-full p-4 mb-4">
+  asd
+</section>
+  
 <!-- More (Nearby) -->
 {#if more.length > 0}
 	<section class="w-full">
 		<div class="flex justify-between items-center mb-4">
 			<Header>{moreHeader}</Header>
-			<ExporeMore href="/{category}" color="orange">{moreText}</ExporeMore>
+			<ExploreMore href="/{category}" color="orange">{moreText}</ExploreMore>
 		</div>
 		<ImageCardContainer>
 			{#each more as recommendation}
