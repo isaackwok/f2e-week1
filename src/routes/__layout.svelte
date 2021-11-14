@@ -1,8 +1,8 @@
 <script context="module">
 	import axios from 'axios';
 	import dayjs from 'dayjs';
-	import tz from 'dayjs/plugin/timezone';
-	import utc from 'dayjs/plugin/utc';
+	import tz from 'dayjs/plugin/timezone.js';
+	import utc from 'dayjs/plugin/utc.js';
 	import getAuthorizationHeader from '../api/getAuthHeader';
 
 	axios.defaults.baseURL = 'https://ptx.transportdata.tw/MOTC/v2/Tourism';
