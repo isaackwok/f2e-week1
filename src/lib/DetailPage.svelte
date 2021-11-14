@@ -63,7 +63,7 @@
 	<div class="w-full overflow-hidden rounded-xl">
     <a href={`https://www.google.com/maps/search/${item.address}`} target="_blank">
       <img
-			src={`https://maps.googleapis.com/maps/api/staticmap?center=${item.address}&zoom=17&size=540x250&scale=2&markers=color:red|${item.address}&key=AIzaSyBH6yrrrzTxMJidGPfgtjSzSJVqpGdG9pA`}
+			src={`https://maps.googleapis.com/maps/api/staticmap?center=${item.address}&zoom=17&size=540x250&scale=2&markers=color:red|${item.address}&key=${import.meta.env.VITE_GOOGLE_STATIC_MAP_API_KEY}`}
 			alt=""
 			class="object-cover object-center h-full w-full"
       />
