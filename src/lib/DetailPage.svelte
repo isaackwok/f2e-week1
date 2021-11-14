@@ -44,7 +44,7 @@
 	class="grid grid-cols-1 sm:grid-cols-2 bg-gray-100 sm:bg-transparent w-screen sm:w-full p-4 sm:p-0 mb-4 rounded-xl gap-4"
 >
 	<!-- Details -->
-	<div class="flex flex-col w-full sm:bg-gray-100 sm:p-4 rounded-xl gap-4">
+	<div class="flex flex-col w-full sm:bg-gray-100 sm:p-4 rounded-xl gap-4 place-self-start">
 		{#each item.details as { key, value, href }}
 			{#if value}
 				<div class="flex items-start gap-2 overflow-hidden">
@@ -59,6 +59,7 @@
 		{/each}
 	</div>
 
+  <!-- Google Map -->
 	<div class="w-full overflow-hidden rounded-xl">
     <a href={`https://www.google.com/maps/search/${item.address}`} target="_blank">
       <img
