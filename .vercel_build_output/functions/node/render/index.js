@@ -5365,6 +5365,366 @@ var init_sha = __esm({
   }
 });
 
+// node_modules/dayjs/plugin/utc.js
+var require_utc = __commonJS({
+  "node_modules/dayjs/plugin/utc.js"(exports, module2) {
+    init_shims();
+    !function(t2, i2) {
+      typeof exports == "object" && typeof module2 != "undefined" ? module2.exports = i2() : typeof define == "function" && define.amd ? define(i2) : (t2 = typeof globalThis != "undefined" ? globalThis : t2 || self).dayjs_plugin_utc = i2();
+    }(exports, function() {
+      "use strict";
+      var t2 = "minute", i2 = /[+-]\d\d(?::?\d\d)?/g, e2 = /([+-]|\d\d)/g;
+      return function(s3, f2, n2) {
+        var u2 = f2.prototype;
+        n2.utc = function(t3) {
+          var i3 = { date: t3, utc: true, args: arguments };
+          return new f2(i3);
+        }, u2.utc = function(i3) {
+          var e3 = n2(this.toDate(), { locale: this.$L, utc: true });
+          return i3 ? e3.add(this.utcOffset(), t2) : e3;
+        }, u2.local = function() {
+          return n2(this.toDate(), { locale: this.$L, utc: false });
+        };
+        var o2 = u2.parse;
+        u2.parse = function(t3) {
+          t3.utc && (this.$u = true), this.$utils().u(t3.$offset) || (this.$offset = t3.$offset), o2.call(this, t3);
+        };
+        var r2 = u2.init;
+        u2.init = function() {
+          if (this.$u) {
+            var t3 = this.$d;
+            this.$y = t3.getUTCFullYear(), this.$M = t3.getUTCMonth(), this.$D = t3.getUTCDate(), this.$W = t3.getUTCDay(), this.$H = t3.getUTCHours(), this.$m = t3.getUTCMinutes(), this.$s = t3.getUTCSeconds(), this.$ms = t3.getUTCMilliseconds();
+          } else
+            r2.call(this);
+        };
+        var a2 = u2.utcOffset;
+        u2.utcOffset = function(s4, f3) {
+          var n3 = this.$utils().u;
+          if (n3(s4))
+            return this.$u ? 0 : n3(this.$offset) ? a2.call(this) : this.$offset;
+          if (typeof s4 == "string" && (s4 = function(t3) {
+            t3 === void 0 && (t3 = "");
+            var s5 = t3.match(i2);
+            if (!s5)
+              return null;
+            var f4 = ("" + s5[0]).match(e2) || ["-", 0, 0], n4 = f4[0], u4 = 60 * +f4[1] + +f4[2];
+            return u4 === 0 ? 0 : n4 === "+" ? u4 : -u4;
+          }(s4)) === null)
+            return this;
+          var u3 = Math.abs(s4) <= 16 ? 60 * s4 : s4, o3 = this;
+          if (f3)
+            return o3.$offset = u3, o3.$u = s4 === 0, o3;
+          if (s4 !== 0) {
+            var r3 = this.$u ? this.toDate().getTimezoneOffset() : -1 * this.utcOffset();
+            (o3 = this.local().add(u3 + r3, t2)).$offset = u3, o3.$x.$localOffset = r3;
+          } else
+            o3 = this.utc();
+          return o3;
+        };
+        var h2 = u2.format;
+        u2.format = function(t3) {
+          var i3 = t3 || (this.$u ? "YYYY-MM-DDTHH:mm:ss[Z]" : "");
+          return h2.call(this, i3);
+        }, u2.valueOf = function() {
+          var t3 = this.$utils().u(this.$offset) ? 0 : this.$offset + (this.$x.$localOffset || new Date().getTimezoneOffset());
+          return this.$d.valueOf() - 6e4 * t3;
+        }, u2.isUTC = function() {
+          return !!this.$u;
+        }, u2.toISOString = function() {
+          return this.toDate().toISOString();
+        }, u2.toString = function() {
+          return this.toDate().toUTCString();
+        };
+        var l2 = u2.toDate;
+        u2.toDate = function(t3) {
+          return t3 === "s" && this.$offset ? n2(this.format("YYYY-MM-DD HH:mm:ss:SSS")).toDate() : l2.call(this);
+        };
+        var c2 = u2.diff;
+        u2.diff = function(t3, i3, e3) {
+          if (t3 && this.$u === t3.$u)
+            return c2.call(this, t3, i3, e3);
+          var s4 = this.local(), f3 = n2(t3).local();
+          return c2.call(s4, f3, i3, e3);
+        };
+      };
+    });
+  }
+});
+
+// node_modules/dayjs/plugin/timezone.js
+var require_timezone = __commonJS({
+  "node_modules/dayjs/plugin/timezone.js"(exports, module2) {
+    init_shims();
+    !function(t2, e2) {
+      typeof exports == "object" && typeof module2 != "undefined" ? module2.exports = e2() : typeof define == "function" && define.amd ? define(e2) : (t2 = typeof globalThis != "undefined" ? globalThis : t2 || self).dayjs_plugin_timezone = e2();
+    }(exports, function() {
+      "use strict";
+      var t2 = { year: 0, month: 1, day: 2, hour: 3, minute: 4, second: 5 }, e2 = {};
+      return function(n2, i2, o2) {
+        var r2, a2 = function(t3, n3, i3) {
+          i3 === void 0 && (i3 = {});
+          var o3 = new Date(t3);
+          return function(t4, n4) {
+            n4 === void 0 && (n4 = {});
+            var i4 = n4.timeZoneName || "short", o4 = t4 + "|" + i4, r3 = e2[o4];
+            return r3 || (r3 = new Intl.DateTimeFormat("en-US", { hour12: false, timeZone: t4, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: i4 }), e2[o4] = r3), r3;
+          }(n3, i3).formatToParts(o3);
+        }, u2 = function(e3, n3) {
+          for (var i3 = a2(e3, n3), r3 = [], u3 = 0; u3 < i3.length; u3 += 1) {
+            var f3 = i3[u3], s4 = f3.type, m2 = f3.value, c2 = t2[s4];
+            c2 >= 0 && (r3[c2] = parseInt(m2, 10));
+          }
+          var d3 = r3[3], l2 = d3 === 24 ? 0 : d3, v2 = r3[0] + "-" + r3[1] + "-" + r3[2] + " " + l2 + ":" + r3[4] + ":" + r3[5] + ":000", h2 = +e3;
+          return (o2.utc(v2).valueOf() - (h2 -= h2 % 1e3)) / 6e4;
+        }, f2 = i2.prototype;
+        f2.tz = function(t3, e3) {
+          t3 === void 0 && (t3 = r2);
+          var n3 = this.utcOffset(), i3 = this.toDate(), a3 = i3.toLocaleString("en-US", { timeZone: t3 }), u3 = Math.round((i3 - new Date(a3)) / 1e3 / 60), f3 = o2(a3).$set("millisecond", this.$ms).utcOffset(15 * -Math.round(i3.getTimezoneOffset() / 15) - u3, true);
+          if (e3) {
+            var s4 = f3.utcOffset();
+            f3 = f3.add(n3 - s4, "minute");
+          }
+          return f3.$x.$timezone = t3, f3;
+        }, f2.offsetName = function(t3) {
+          var e3 = this.$x.$timezone || o2.tz.guess(), n3 = a2(this.valueOf(), e3, { timeZoneName: t3 }).find(function(t4) {
+            return t4.type.toLowerCase() === "timezonename";
+          });
+          return n3 && n3.value;
+        };
+        var s3 = f2.startOf;
+        f2.startOf = function(t3, e3) {
+          if (!this.$x || !this.$x.$timezone)
+            return s3.call(this, t3, e3);
+          var n3 = o2(this.format("YYYY-MM-DD HH:mm:ss:SSS"));
+          return s3.call(n3, t3, e3).tz(this.$x.$timezone, true);
+        }, o2.tz = function(t3, e3, n3) {
+          var i3 = n3 && e3, a3 = n3 || e3 || r2, f3 = u2(+o2(), a3);
+          if (typeof t3 != "string")
+            return o2(t3).tz(a3);
+          var s4 = function(t4, e4, n4) {
+            var i4 = t4 - 60 * e4 * 1e3, o3 = u2(i4, n4);
+            if (e4 === o3)
+              return [i4, e4];
+            var r3 = u2(i4 -= 60 * (o3 - e4) * 1e3, n4);
+            return o3 === r3 ? [i4, o3] : [t4 - 60 * Math.min(o3, r3) * 1e3, Math.max(o3, r3)];
+          }(o2.utc(t3, i3).valueOf(), f3, a3), m2 = s4[0], c2 = s4[1], d3 = o2(m2).utcOffset(c2);
+          return d3.$x.$timezone = a3, d3;
+        }, o2.tz.guess = function() {
+          return Intl.DateTimeFormat().resolvedOptions().timeZone;
+        }, o2.tz.setDefault = function(t3) {
+          r2 = t3;
+        };
+      };
+    });
+  }
+});
+
+// node_modules/dayjs/dayjs.min.js
+var require_dayjs_min = __commonJS({
+  "node_modules/dayjs/dayjs.min.js"(exports, module2) {
+    init_shims();
+    !function(t2, e2) {
+      typeof exports == "object" && typeof module2 != "undefined" ? module2.exports = e2() : typeof define == "function" && define.amd ? define(e2) : (t2 = typeof globalThis != "undefined" ? globalThis : t2 || self).dayjs = e2();
+    }(exports, function() {
+      "use strict";
+      var t2 = 1e3, e2 = 6e4, n2 = 36e5, r2 = "millisecond", i2 = "second", s3 = "minute", u2 = "hour", a2 = "day", o2 = "week", f2 = "month", h2 = "quarter", c2 = "year", d3 = "date", $2 = "Invalid Date", l2 = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y2 = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M2 = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_") }, m2 = function(t3, e3, n3) {
+        var r3 = String(t3);
+        return !r3 || r3.length >= e3 ? t3 : "" + Array(e3 + 1 - r3.length).join(n3) + t3;
+      }, g2 = { s: m2, z: function(t3) {
+        var e3 = -t3.utcOffset(), n3 = Math.abs(e3), r3 = Math.floor(n3 / 60), i3 = n3 % 60;
+        return (e3 <= 0 ? "+" : "-") + m2(r3, 2, "0") + ":" + m2(i3, 2, "0");
+      }, m: function t3(e3, n3) {
+        if (e3.date() < n3.date())
+          return -t3(n3, e3);
+        var r3 = 12 * (n3.year() - e3.year()) + (n3.month() - e3.month()), i3 = e3.clone().add(r3, f2), s4 = n3 - i3 < 0, u3 = e3.clone().add(r3 + (s4 ? -1 : 1), f2);
+        return +(-(r3 + (n3 - i3) / (s4 ? i3 - u3 : u3 - i3)) || 0);
+      }, a: function(t3) {
+        return t3 < 0 ? Math.ceil(t3) || 0 : Math.floor(t3);
+      }, p: function(t3) {
+        return { M: f2, y: c2, w: o2, d: a2, D: d3, h: u2, m: s3, s: i2, ms: r2, Q: h2 }[t3] || String(t3 || "").toLowerCase().replace(/s$/, "");
+      }, u: function(t3) {
+        return t3 === void 0;
+      } }, D2 = "en", v2 = {};
+      v2[D2] = M2;
+      var p2 = function(t3) {
+        return t3 instanceof _2;
+      }, S2 = function(t3, e3, n3) {
+        var r3;
+        if (!t3)
+          return D2;
+        if (typeof t3 == "string")
+          v2[t3] && (r3 = t3), e3 && (v2[t3] = e3, r3 = t3);
+        else {
+          var i3 = t3.name;
+          v2[i3] = t3, r3 = i3;
+        }
+        return !n3 && r3 && (D2 = r3), r3 || !n3 && D2;
+      }, w2 = function(t3, e3) {
+        if (p2(t3))
+          return t3.clone();
+        var n3 = typeof e3 == "object" ? e3 : {};
+        return n3.date = t3, n3.args = arguments, new _2(n3);
+      }, O2 = g2;
+      O2.l = S2, O2.i = p2, O2.w = function(t3, e3) {
+        return w2(t3, { locale: e3.$L, utc: e3.$u, x: e3.$x, $offset: e3.$offset });
+      };
+      var _2 = function() {
+        function M3(t3) {
+          this.$L = S2(t3.locale, null, true), this.parse(t3);
+        }
+        var m3 = M3.prototype;
+        return m3.parse = function(t3) {
+          this.$d = function(t4) {
+            var e3 = t4.date, n3 = t4.utc;
+            if (e3 === null)
+              return new Date(NaN);
+            if (O2.u(e3))
+              return new Date();
+            if (e3 instanceof Date)
+              return new Date(e3);
+            if (typeof e3 == "string" && !/Z$/i.test(e3)) {
+              var r3 = e3.match(l2);
+              if (r3) {
+                var i3 = r3[2] - 1 || 0, s4 = (r3[7] || "0").substring(0, 3);
+                return n3 ? new Date(Date.UTC(r3[1], i3, r3[3] || 1, r3[4] || 0, r3[5] || 0, r3[6] || 0, s4)) : new Date(r3[1], i3, r3[3] || 1, r3[4] || 0, r3[5] || 0, r3[6] || 0, s4);
+              }
+            }
+            return new Date(e3);
+          }(t3), this.$x = t3.x || {}, this.init();
+        }, m3.init = function() {
+          var t3 = this.$d;
+          this.$y = t3.getFullYear(), this.$M = t3.getMonth(), this.$D = t3.getDate(), this.$W = t3.getDay(), this.$H = t3.getHours(), this.$m = t3.getMinutes(), this.$s = t3.getSeconds(), this.$ms = t3.getMilliseconds();
+        }, m3.$utils = function() {
+          return O2;
+        }, m3.isValid = function() {
+          return !(this.$d.toString() === $2);
+        }, m3.isSame = function(t3, e3) {
+          var n3 = w2(t3);
+          return this.startOf(e3) <= n3 && n3 <= this.endOf(e3);
+        }, m3.isAfter = function(t3, e3) {
+          return w2(t3) < this.startOf(e3);
+        }, m3.isBefore = function(t3, e3) {
+          return this.endOf(e3) < w2(t3);
+        }, m3.$g = function(t3, e3, n3) {
+          return O2.u(t3) ? this[e3] : this.set(n3, t3);
+        }, m3.unix = function() {
+          return Math.floor(this.valueOf() / 1e3);
+        }, m3.valueOf = function() {
+          return this.$d.getTime();
+        }, m3.startOf = function(t3, e3) {
+          var n3 = this, r3 = !!O2.u(e3) || e3, h3 = O2.p(t3), $3 = function(t4, e4) {
+            var i3 = O2.w(n3.$u ? Date.UTC(n3.$y, e4, t4) : new Date(n3.$y, e4, t4), n3);
+            return r3 ? i3 : i3.endOf(a2);
+          }, l3 = function(t4, e4) {
+            return O2.w(n3.toDate()[t4].apply(n3.toDate("s"), (r3 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e4)), n3);
+          }, y3 = this.$W, M4 = this.$M, m4 = this.$D, g3 = "set" + (this.$u ? "UTC" : "");
+          switch (h3) {
+            case c2:
+              return r3 ? $3(1, 0) : $3(31, 11);
+            case f2:
+              return r3 ? $3(1, M4) : $3(0, M4 + 1);
+            case o2:
+              var D3 = this.$locale().weekStart || 0, v3 = (y3 < D3 ? y3 + 7 : y3) - D3;
+              return $3(r3 ? m4 - v3 : m4 + (6 - v3), M4);
+            case a2:
+            case d3:
+              return l3(g3 + "Hours", 0);
+            case u2:
+              return l3(g3 + "Minutes", 1);
+            case s3:
+              return l3(g3 + "Seconds", 2);
+            case i2:
+              return l3(g3 + "Milliseconds", 3);
+            default:
+              return this.clone();
+          }
+        }, m3.endOf = function(t3) {
+          return this.startOf(t3, false);
+        }, m3.$set = function(t3, e3) {
+          var n3, o3 = O2.p(t3), h3 = "set" + (this.$u ? "UTC" : ""), $3 = (n3 = {}, n3[a2] = h3 + "Date", n3[d3] = h3 + "Date", n3[f2] = h3 + "Month", n3[c2] = h3 + "FullYear", n3[u2] = h3 + "Hours", n3[s3] = h3 + "Minutes", n3[i2] = h3 + "Seconds", n3[r2] = h3 + "Milliseconds", n3)[o3], l3 = o3 === a2 ? this.$D + (e3 - this.$W) : e3;
+          if (o3 === f2 || o3 === c2) {
+            var y3 = this.clone().set(d3, 1);
+            y3.$d[$3](l3), y3.init(), this.$d = y3.set(d3, Math.min(this.$D, y3.daysInMonth())).$d;
+          } else
+            $3 && this.$d[$3](l3);
+          return this.init(), this;
+        }, m3.set = function(t3, e3) {
+          return this.clone().$set(t3, e3);
+        }, m3.get = function(t3) {
+          return this[O2.p(t3)]();
+        }, m3.add = function(r3, h3) {
+          var d4, $3 = this;
+          r3 = Number(r3);
+          var l3 = O2.p(h3), y3 = function(t3) {
+            var e3 = w2($3);
+            return O2.w(e3.date(e3.date() + Math.round(t3 * r3)), $3);
+          };
+          if (l3 === f2)
+            return this.set(f2, this.$M + r3);
+          if (l3 === c2)
+            return this.set(c2, this.$y + r3);
+          if (l3 === a2)
+            return y3(1);
+          if (l3 === o2)
+            return y3(7);
+          var M4 = (d4 = {}, d4[s3] = e2, d4[u2] = n2, d4[i2] = t2, d4)[l3] || 1, m4 = this.$d.getTime() + r3 * M4;
+          return O2.w(m4, this);
+        }, m3.subtract = function(t3, e3) {
+          return this.add(-1 * t3, e3);
+        }, m3.format = function(t3) {
+          var e3 = this, n3 = this.$locale();
+          if (!this.isValid())
+            return n3.invalidDate || $2;
+          var r3 = t3 || "YYYY-MM-DDTHH:mm:ssZ", i3 = O2.z(this), s4 = this.$H, u3 = this.$m, a3 = this.$M, o3 = n3.weekdays, f3 = n3.months, h3 = function(t4, n4, i4, s5) {
+            return t4 && (t4[n4] || t4(e3, r3)) || i4[n4].substr(0, s5);
+          }, c3 = function(t4) {
+            return O2.s(s4 % 12 || 12, t4, "0");
+          }, d4 = n3.meridiem || function(t4, e4, n4) {
+            var r4 = t4 < 12 ? "AM" : "PM";
+            return n4 ? r4.toLowerCase() : r4;
+          }, l3 = { YY: String(this.$y).slice(-2), YYYY: this.$y, M: a3 + 1, MM: O2.s(a3 + 1, 2, "0"), MMM: h3(n3.monthsShort, a3, f3, 3), MMMM: h3(f3, a3), D: this.$D, DD: O2.s(this.$D, 2, "0"), d: String(this.$W), dd: h3(n3.weekdaysMin, this.$W, o3, 2), ddd: h3(n3.weekdaysShort, this.$W, o3, 3), dddd: o3[this.$W], H: String(s4), HH: O2.s(s4, 2, "0"), h: c3(1), hh: c3(2), a: d4(s4, u3, true), A: d4(s4, u3, false), m: String(u3), mm: O2.s(u3, 2, "0"), s: String(this.$s), ss: O2.s(this.$s, 2, "0"), SSS: O2.s(this.$ms, 3, "0"), Z: i3 };
+          return r3.replace(y2, function(t4, e4) {
+            return e4 || l3[t4] || i3.replace(":", "");
+          });
+        }, m3.utcOffset = function() {
+          return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
+        }, m3.diff = function(r3, d4, $3) {
+          var l3, y3 = O2.p(d4), M4 = w2(r3), m4 = (M4.utcOffset() - this.utcOffset()) * e2, g3 = this - M4, D3 = O2.m(this, M4);
+          return D3 = (l3 = {}, l3[c2] = D3 / 12, l3[f2] = D3, l3[h2] = D3 / 3, l3[o2] = (g3 - m4) / 6048e5, l3[a2] = (g3 - m4) / 864e5, l3[u2] = g3 / n2, l3[s3] = g3 / e2, l3[i2] = g3 / t2, l3)[y3] || g3, $3 ? D3 : O2.a(D3);
+        }, m3.daysInMonth = function() {
+          return this.endOf(f2).$D;
+        }, m3.$locale = function() {
+          return v2[this.$L];
+        }, m3.locale = function(t3, e3) {
+          if (!t3)
+            return this.$L;
+          var n3 = this.clone(), r3 = S2(t3, e3, true);
+          return r3 && (n3.$L = r3), n3;
+        }, m3.clone = function() {
+          return O2.w(this.$d, this);
+        }, m3.toDate = function() {
+          return new Date(this.valueOf());
+        }, m3.toJSON = function() {
+          return this.isValid() ? this.toISOString() : null;
+        }, m3.toISOString = function() {
+          return this.$d.toISOString();
+        }, m3.toString = function() {
+          return this.$d.toUTCString();
+        }, M3;
+      }(), b2 = _2.prototype;
+      return w2.prototype = b2, [["$ms", r2], ["$s", i2], ["$m", s3], ["$H", u2], ["$W", a2], ["$M", f2], ["$y", c2], ["$D", d3]].forEach(function(t3) {
+        b2[t3[1]] = function(e3) {
+          return this.$g(e3, t3[0], t3[1]);
+        };
+      }), w2.extend = function(t3, e3) {
+        return t3.$i || (t3(e3, _2, w2), t3.$i = true), w2;
+      }, w2.locale = S2, w2.isDayjs = p2, w2.unix = function(t3) {
+        return w2(1e3 * t3);
+      }, w2.en = v2[D2], w2.Ls = v2, w2.p = {}, w2;
+    });
+  }
+});
+
 // node_modules/axios/lib/helpers/bind.js
 var require_bind = __commonJS({
   "node_modules/axios/lib/helpers/bind.js"(exports, module2) {
@@ -7991,17 +8351,20 @@ var require_axios2 = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/__layout-f614c0e5.js
-var layout_f614c0e5_exports = {};
-__export(layout_f614c0e5_exports, {
+// .svelte-kit/output/server/chunks/__layout-c785d613.js
+var layout_c785d613_exports = {};
+__export(layout_c785d613_exports, {
   default: () => _layout
 });
-var import_axios, getAuthorizationHeader, Logo, css$2, Navbar, css$1, Footer, css, _layout;
-var init_layout_f614c0e5 = __esm({
-  ".svelte-kit/output/server/chunks/__layout-f614c0e5.js"() {
+var import_utc, import_timezone, import_dayjs, import_axios, getAuthorizationHeader, Logo, css$2, Navbar, css$1, Footer, css, _layout;
+var init_layout_c785d613 = __esm({
+  ".svelte-kit/output/server/chunks/__layout-c785d613.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     init_sha();
+    import_utc = __toModule(require_utc());
+    import_timezone = __toModule(require_timezone());
+    import_dayjs = __toModule(require_dayjs_min());
     import_axios = __toModule(require_axios2());
     getAuthorizationHeader = function() {
       var AppID = "947333329b9a4c99adc478a8c12c3aa3";
@@ -8051,6 +8414,9 @@ var init_layout_f614c0e5 = __esm({
       config.headers = getAuthorizationHeader();
       return config;
     });
+    import_dayjs.default.extend(import_utc.default);
+    import_dayjs.default.extend(import_timezone.default);
+    import_dayjs.default.tz.setDefault("Asia/Taipei");
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css);
       return `${$$result.head += `<script defer src="${"/font-awesome/all.js"}" data-svelte="svelte-11g58vi"><\/script><meta name="${"viewport"}" content="${"width=device-width, initial-scale=1.0"}" class="${"svelte-hxytxr"}" data-svelte="svelte-11g58vi">`, ""}
@@ -8064,9 +8430,9 @@ ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/error-6765b4e5.js
-var error_6765b4e5_exports = {};
-__export(error_6765b4e5_exports, {
+// .svelte-kit/output/server/chunks/error-35c456b0.js
+var error_35c456b0_exports = {};
+__export(error_35c456b0_exports, {
   default: () => Error2,
   load: () => load
 });
@@ -8074,10 +8440,10 @@ function load({ error: error2, status }) {
   return { props: { error: error2, status } };
 }
 var Error2;
-var init_error_6765b4e5 = __esm({
-  ".svelte-kit/output/server/chunks/error-6765b4e5.js"() {
+var init_error_35c456b0 = __esm({
+  ".svelte-kit/output/server/chunks/error-35c456b0.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -8097,12 +8463,12 @@ ${error2.stack ? `<pre>${escape(error2.stack)}</pre>` : ``}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/ImageCardContainer-ff512a0a.js
+// .svelte-kit/output/server/chunks/ImageCardContainer-2e66ec86.js
 var css$6, Carousel, css$5, LocationMarker, css$4, Title, css$3, ExploreMore, css$22, Header, css$12, ImageCard, css2, ImageCardContainer;
-var init_ImageCardContainer_ff512a0a = __esm({
-  ".svelte-kit/output/server/chunks/ImageCardContainer-ff512a0a.js"() {
+var init_ImageCardContainer_2e66ec86 = __esm({
+  ".svelte-kit/output/server/chunks/ImageCardContainer-2e66ec86.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     css$6 = {
       code: ".indicator.svelte-tqqw5d{border-radius:9999px;border-width:2px;cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:2rem;padding:0.25rem;--tw-shadow-color:0, 0, 0;--tw-shadow:0 10px 15px -3px rgba(var(--tw-shadow-color), 0.1), 0 4px 6px -2px rgba(var(--tw-shadow-color), 0.05);-webkit-box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);--tw-text-opacity:1;color:rgba(255, 255, 255, var(--tw-text-opacity));width:2rem}@media(min-width: 640px){.indicator.svelte-tqqw5d{height:3rem;width:3rem}}.bg-white.svelte-tqqw5d{--tw-bg-opacity:1;background-color:rgba(255, 255, 255, var(--tw-bg-opacity))}.bg-opacity-40.svelte-tqqw5d{--tw-bg-opacity:0.4}.rounded-xl.svelte-tqqw5d{border-radius:0.75rem}.rounded-full.svelte-tqqw5d{border-radius:9999px}.cursor-pointer.svelte-tqqw5d{cursor:pointer}.flex.svelte-tqqw5d{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.items-center.svelte-tqqw5d{-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center}.self-center.svelte-tqqw5d{-ms-flex-item-align:center;-ms-grid-row-align:center;-webkit-align-self:center;align-self:center}.justify-between.svelte-tqqw5d{-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;justify-content:space-between}.h-full.svelte-tqqw5d{height:100%}.h-2.svelte-tqqw5d{height:0.5rem}.text-xl.svelte-tqqw5d{font-size:1.25rem;line-height:1.75rem}.m-1.svelte-tqqw5d{margin:0.25rem}.object-cover.svelte-tqqw5d{-o-object-fit:cover;object-fit:cover}.object-center.svelte-tqqw5d{-o-object-position:center;object-position:center}.overflow-hidden.svelte-tqqw5d{overflow:hidden}.px-4.svelte-tqqw5d{padding-left:1rem;padding-right:1rem}.absolute.svelte-tqqw5d{position:absolute}.relative.svelte-tqqw5d{position:relative}.inset-y-0.svelte-tqqw5d{top:0px;bottom:0px}.left-0.svelte-tqqw5d{left:0px}.right-0.svelte-tqqw5d{right:0px}.right-4.svelte-tqqw5d{right:1rem}.bottom-2.svelte-tqqw5d{bottom:0.5rem}.shadow.svelte-tqqw5d{--tw-shadow-color:0, 0, 0;--tw-shadow:0 1px 3px 0 rgba(var(--tw-shadow-color), 0.1), 0 1px 2px 0 rgba(var(--tw-shadow-color), 0.06);-webkit-box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.text-center.svelte-tqqw5d{text-align:center}.text-white.svelte-tqqw5d{--tw-text-opacity:1;color:rgba(255, 255, 255, var(--tw-text-opacity))}.text-shadow-xl.svelte-tqqw5d{text-shadow:1px 1px 3px rgb(0 0 0 / 29%), 2px 4px 7px rgb(73 64 125 / 35%)}.w-full.svelte-tqqw5d{width:100%}.w-2.svelte-tqqw5d{width:0.5rem}@media(min-width: 640px){.sm\\:h-4.svelte-tqqw5d{height:1rem}.sm\\:text-3xl.svelte-tqqw5d{font-size:1.875rem;line-height:2.25rem}.sm\\:w-4.svelte-tqqw5d{width:1rem}}",
       map: null
@@ -8206,9 +8572,9 @@ var init_ImageCardContainer_ff512a0a = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-fceee890.js
-var index_fceee890_exports = {};
-__export(index_fceee890_exports, {
+// .svelte-kit/output/server/chunks/index-7e92c597.js
+var index_7e92c597_exports = {};
+__export(index_7e92c597_exports, {
   default: () => Routes
 });
 function isOutOfViewport(elem) {
@@ -8256,12 +8622,12 @@ function convertStringItemsToObjects(_items) {
   });
 }
 var import_axios2, css$f, Item, css$e, List, css$d, Selection, css$c, MultiSelection, css$b, VirtualList, ClearIcon, Object_1, css$a, Select, css$9, Dropdown, css$8, SearchBar, css$7, Button, css$62, HeroSection, css$52, FeatureSection, css$42, EventCard, css$32, RecentEventSection, css$23, PopularPlaceSection, css$13, FoodieSection, css3, Routes;
-var init_index_fceee890 = __esm({
-  ".svelte-kit/output/server/chunks/index-fceee890.js"() {
+var init_index_7e92c597 = __esm({
+  ".svelte-kit/output/server/chunks/index-7e92c597.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     import_axios2 = __toModule(require_axios2());
-    init_ImageCardContainer_ff512a0a();
+    init_ImageCardContainer_2e66ec86();
     css$f = {
       code: ".item.svelte-12kv145{cursor:default;height:var(--height, 42px);line-height:var(--height, 42px);padding:var(--itemPadding, 0 20px);color:var(--itemColor, inherit);text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.groupHeader.svelte-12kv145{text-transform:var(--groupTitleTextTransform, uppercase)}.groupItem.svelte-12kv145{padding-left:var(--groupItemPaddingLeft, 40px)}.item.svelte-12kv145:active{background:var(--itemActiveBackground, #b9daff)}.item.active.svelte-12kv145{background:var(--itemIsActiveBG, #007aff);color:var(--itemIsActiveColor, #fff)}.item.notSelectable.svelte-12kv145{color:var(--itemIsNotSelectableColor, #999)}.item.first.svelte-12kv145{border-radius:var(--itemFirstBorderRadius, 4px 4px 0 0)}.item.hover.svelte-12kv145:not(.active){background:var(--itemHoverBG, #e7f2ff);color:var(--itemHoverColor, inherit)}",
       map: null
@@ -9308,29 +9674,29 @@ var init_index_fceee890 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-fbb2bbf6.js
-var index_fbb2bbf6_exports = {};
-__export(index_fbb2bbf6_exports, {
+// .svelte-kit/output/server/chunks/index-4cdce4ef.js
+var index_4cdce4ef_exports = {};
+__export(index_4cdce4ef_exports, {
   default: () => Event
 });
 var Event;
-var init_index_fbb2bbf6 = __esm({
-  ".svelte-kit/output/server/chunks/index-fbb2bbf6.js"() {
+var init_index_4cdce4ef = __esm({
+  ".svelte-kit/output/server/chunks/index-4cdce4ef.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     Event = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/DetailPage-cb5113c8.js
+// .svelte-kit/output/server/chunks/DetailPage-4348fbc7.js
 var css$14, Hashtag, css4, DetailPage;
-var init_DetailPage_cb5113c8 = __esm({
-  ".svelte-kit/output/server/chunks/DetailPage-cb5113c8.js"() {
+var init_DetailPage_4348fbc7 = __esm({
+  ".svelte-kit/output/server/chunks/DetailPage-4348fbc7.js"() {
     init_shims();
-    init_app_45a890be();
-    init_ImageCardContainer_ff512a0a();
+    init_app_1cf152e1();
+    init_ImageCardContainer_2e66ec86();
     css$14 = {
       code: "span.svelte-18ghjeb{color:#bea363;border-color:#bea363}.rounded-full.svelte-18ghjeb{border-radius:9999px}.border.svelte-18ghjeb{border-width:1px}.font-light.svelte-18ghjeb{font-weight:300}.px-2.svelte-18ghjeb{padding-left:0.5rem;padding-right:0.5rem}.py-1.svelte-18ghjeb{padding-top:0.25rem;padding-bottom:0.25rem}",
       map: null
@@ -9341,7 +9707,7 @@ var init_DetailPage_cb5113c8 = __esm({
 </span>`;
     });
     css4 = {
-      code: ".bg-gray-100.svelte-10vvdul{--tw-bg-opacity:1;background-color:rgba(243, 244, 246, var(--tw-bg-opacity))}.flex.svelte-10vvdul{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.grid.svelte-10vvdul{display:-ms-grid;display:grid}.flex-col.svelte-10vvdul{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;-webkit-flex-direction:column;flex-direction:column}.items-center.svelte-10vvdul{-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center}.justify-center.svelte-10vvdul{-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center}.justify-between.svelte-10vvdul{-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;justify-content:space-between}.font-light.svelte-10vvdul{font-weight:300}.h-60.svelte-10vvdul{height:15rem}.text-lg.svelte-10vvdul{font-size:1.125rem;line-height:1.75rem}.leading-relaxed.svelte-10vvdul{line-height:1.625}.mb-4.svelte-10vvdul{margin-bottom:1rem}.p-4.svelte-10vvdul{padding:1rem}.text-justify.svelte-10vvdul{text-align:justify}.w-full.svelte-10vvdul{width:100%}.w-screen.svelte-10vvdul{width:100vw}.gap-4.svelte-10vvdul{grid-gap:1rem;gap:1rem}.gap-2.svelte-10vvdul{grid-gap:0.5rem;gap:0.5rem}.grid-cols-1.svelte-10vvdul{grid-template-columns:repeat(1, minmax(0, 1fr))}@media(min-width: 640px){.sm\\:bg-transparent.svelte-10vvdul{background-color:transparent}.sm\\:h-md.svelte-10vvdul{height:28rem}.sm\\:w-full.svelte-10vvdul{width:100%}.sm\\:grid-cols-2.svelte-10vvdul{grid-template-columns:repeat(2, minmax(0, 1fr))}}",
+      code: ".url.svelte-18q5gjq{color:#6e7d60;text-decoration:underline}.bg-gray-100.svelte-18q5gjq{--tw-bg-opacity:1;background-color:rgba(243, 244, 246, var(--tw-bg-opacity))}.rounded-xl.svelte-18q5gjq{border-radius:0.75rem}.flex.svelte-18q5gjq{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.grid.svelte-18q5gjq{display:-ms-grid;display:grid}.flex-col.svelte-18q5gjq{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;-webkit-flex-direction:column;flex-direction:column}.items-start.svelte-18q5gjq{-webkit-box-align:start;-ms-flex-align:start;-webkit-align-items:flex-start;align-items:flex-start}.items-center.svelte-18q5gjq{-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center}.justify-center.svelte-18q5gjq{-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center}.justify-between.svelte-18q5gjq{-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;justify-content:space-between}.font-light.svelte-18q5gjq{font-weight:300}.font-bold.svelte-18q5gjq{font-weight:700}.h-60.svelte-18q5gjq{height:15rem}.h-full.svelte-18q5gjq{height:100%}.text-lg.svelte-18q5gjq{font-size:1.125rem;line-height:1.75rem}.leading-relaxed.svelte-18q5gjq{line-height:1.625}.mb-4.svelte-18q5gjq{margin-bottom:1rem}.object-cover.svelte-18q5gjq{-o-object-fit:cover;object-fit:cover}.object-center.svelte-18q5gjq{-o-object-position:center;object-position:center}.overflow-hidden.svelte-18q5gjq{overflow:hidden}.p-4.svelte-18q5gjq{padding:1rem}.text-justify.svelte-18q5gjq{text-align:justify}.whitespace-nowrap.svelte-18q5gjq{white-space:nowrap}.w-full.svelte-18q5gjq{width:100%}.w-screen.svelte-18q5gjq{width:100vw}.gap-4.svelte-18q5gjq{grid-gap:1rem;gap:1rem}.gap-2.svelte-18q5gjq{grid-gap:0.5rem;gap:0.5rem}.grid-cols-1.svelte-18q5gjq{grid-template-columns:repeat(1, minmax(0, 1fr))}@media(min-width: 640px){.sm\\:bg-transparent.svelte-18q5gjq{background-color:transparent}.sm\\:bg-gray-100.svelte-18q5gjq{--tw-bg-opacity:1;background-color:rgba(243, 244, 246, var(--tw-bg-opacity))}.sm\\:h-md.svelte-18q5gjq{height:28rem}.sm\\:p-0.svelte-18q5gjq{padding:0px}.sm\\:p-4.svelte-18q5gjq{padding:1rem}.sm\\:w-full.svelte-18q5gjq{width:100%}.sm\\:grid-cols-2.svelte-18q5gjq{grid-template-columns:repeat(2, minmax(0, 1fr))}}",
       map: null
     };
     DetailPage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -9364,22 +9730,25 @@ var init_DetailPage_cb5113c8 = __esm({
       if ($$props.categoryZh === void 0 && $$bindings.categoryZh && categoryZh4 !== void 0)
         $$bindings.categoryZh(categoryZh4);
       $$result.css.add(css4);
-      return `<section class="${"flex justify-center w-full mb-4 svelte-10vvdul"}"><div class="${"w-full h-60 sm:h-md svelte-10vvdul"}">${validate_component(Carousel, "Carousel").$$render($$result, { items: item.images }, {}, {})}</div></section>
+      return `<section class="${"flex justify-center w-full mb-4 svelte-18q5gjq"}"><div class="${"w-full h-60 sm:h-md svelte-18q5gjq"}">${validate_component(Carousel, "Carousel").$$render($$result, { items: item.images }, {}, {})}</div></section>
 
 
-<section class="${"flex flex-col gap-4 w-full font-light mb-4 svelte-10vvdul"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `${escape(item.title)}` })}
-	<div class="${"flex gap-2 svelte-10vvdul"}">${each(item.tags, (tag) => `${validate_component(Hashtag, "Hashtag").$$render($$result, {}, {}, { default: () => `${escape(tag)}` })}`)}</div>
+<section class="${"flex flex-col gap-4 w-full font-light mb-4 svelte-18q5gjq"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `${escape(item.title)}` })}
+	<div class="${"flex gap-2 svelte-18q5gjq"}">${each(item.tags, (tag) => `${validate_component(Hashtag, "Hashtag").$$render($$result, {}, {}, { default: () => `${escape(tag)}` })}`)}</div>
 	${item.description ? `<div>${validate_component(Title, "Title").$$render($$result, {}, {}, {
         default: () => `${escape(categoryZh4)}\u4ECB\u7D39\uFF1A`
       })}
-			<p class="${"text-lg leading-relaxed text-justify svelte-10vvdul"}">${escape(item.description)}</p></div>` : ``}</section>
+			<p class="${"text-lg leading-relaxed text-justify svelte-18q5gjq"}">${escape(item.description)}</p></div>` : ``}</section>
 
 
-<section class="${"grid grid-cols-1 sm:grid-cols-2 bg-gray-100 sm:bg-transparent w-screen sm:w-full p-4 mb-4 svelte-10vvdul"}">asd
-</section>
-  
+<section class="${"grid grid-cols-1 sm:grid-cols-2 bg-gray-100 sm:bg-transparent w-screen sm:w-full p-4 sm:p-0 mb-4 rounded-xl gap-4 svelte-18q5gjq"}"><div class="${"flex flex-col w-full sm:bg-gray-100 sm:p-4 rounded-xl gap-4 svelte-18q5gjq"}">${each(item.details, ({ key, value, href }) => `${value ? `<div class="${"flex items-start gap-2 overflow-hidden svelte-18q5gjq"}"><span class="${"font-bold whitespace-nowrap svelte-18q5gjq"}">${escape(key)}: </span>
+					${href ? `<a${add_attribute("href", href, 0)} class="${"url font-light svelte-18q5gjq"}" target="${"_blank"}">${escape(value)}</a>` : `<span class="${"font-light svelte-18q5gjq"}">${escape(value)}</span>`}
+				</div>` : ``}`)}</div>
 
-${more.length > 0 ? `<section class="${"w-full svelte-10vvdul"}"><div class="${"flex justify-between items-center mb-4 svelte-10vvdul"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `${escape(moreHeader)}` })}
+	<div class="${"w-full overflow-hidden rounded-xl svelte-18q5gjq"}"><a${add_attribute("href", `https://www.google.com/maps/search/${item.address}`, 0)} target="${"_blank"}"><img${add_attribute("src", `https://maps.googleapis.com/maps/api/staticmap?center=${item.address}&zoom=17&size=540x250&scale=2&key=AIzaSyBH6yrrrzTxMJidGPfgtjSzSJVqpGdG9pA`, 0)} alt="${""}" class="${"object-cover object-center h-full w-full svelte-18q5gjq"}"></a></div></section>
+
+
+${more.length > 0 ? `<section class="${"w-full svelte-18q5gjq"}"><div class="${"flex justify-between items-center mb-4 svelte-18q5gjq"}">${validate_component(Header, "Header").$$render($$result, {}, {}, { default: () => `${escape(moreHeader)}` })}
 			${validate_component(ExploreMore, "ExploreMore").$$render($$result, { href: "/" + category4, color: "orange" }, {}, { default: () => `${escape(moreText)}` })}</div>
 		${validate_component(ImageCardContainer, "ImageCardContainer").$$render($$result, {}, {}, {
         default: () => `${each(more, (recommendation) => `${validate_component(ImageCard, "ImageCard").$$render($$result, Object.assign(recommendation), {}, {})}`)}`
@@ -9388,9 +9757,9 @@ ${more.length > 0 ? `<section class="${"w-full svelte-10vvdul"}"><div class="${"
   }
 });
 
-// .svelte-kit/output/server/chunks/[id]-21a3aae8.js
-var id_21a3aae8_exports = {};
-__export(id_21a3aae8_exports, {
+// .svelte-kit/output/server/chunks/[id]-aee1a75a.js
+var id_aee1a75a_exports = {};
+__export(id_aee1a75a_exports, {
   default: () => U5Bidu5D,
   load: () => load2
 });
@@ -9413,14 +9782,15 @@ async function load2({ page }) {
     error: new Error(`Could not load ${id}`)
   };
 }
-var import_axios3, category, categoryZh, U5Bidu5D;
-var init_id_21a3aae8 = __esm({
-  ".svelte-kit/output/server/chunks/[id]-21a3aae8.js"() {
+var import_dayjs2, import_axios3, category, categoryZh, U5Bidu5D;
+var init_id_aee1a75a = __esm({
+  ".svelte-kit/output/server/chunks/[id]-aee1a75a.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
+    import_dayjs2 = __toModule(require_dayjs_min());
     import_axios3 = __toModule(require_axios2());
-    init_DetailPage_cb5113c8();
-    init_ImageCardContainer_ff512a0a();
+    init_DetailPage_4348fbc7();
+    init_ImageCardContainer_2e66ec86();
     category = "event";
     categoryZh = "\u6D3B\u52D5";
     U5Bidu5D = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -9442,7 +9812,28 @@ var init_id_21a3aae8 = __esm({
         ].filter((item2) => !!item2.src),
         title: event.Name,
         tags: [event.Class1, event.Class2, event.Class3].filter((item2) => !!item2),
-        description: event.Description
+        description: event.Description,
+        details: [
+          {
+            key: "\u6D3B\u52D5\u6642\u9593",
+            value: `${(0, import_dayjs2.default)(event.StartTime).locale("Asia/Taipei").format("YYYY/MM/DD hh:mm")} - ${(0, import_dayjs2.default)(event.EndTime).format("YYYY/MM/DD hh:mm")}`
+          },
+          { key: "\u806F\u7D61\u96FB\u8A71", value: event.Phone },
+          { key: "\u4E3B\u8FA6\u55AE\u4F4D", value: event.Organizer },
+          {
+            key: "\u6D3B\u52D5\u5730\u9EDE",
+            value: event.Address,
+            href: `https://www.google.com/maps/search/${event.Address}`
+          },
+          {
+            key: "\u5B98\u65B9\u7DB2\u7AD9",
+            value: event.WebsiteUrl,
+            href: event.WebsiteUrl
+          },
+          { key: "\u6D3B\u52D5\u8CBB\u7528", value: event.Charge },
+          { key: "\u6CE8\u610F\u4E8B\u9805", value: event.Remarks }
+        ],
+        address: event.Address
       };
       more = nearby.map((item2) => ({
         href: `/${category}/${item2.ID}`,
@@ -9462,25 +9853,25 @@ var init_id_21a3aae8 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-e2e3ddbe.js
-var index_e2e3ddbe_exports = {};
-__export(index_e2e3ddbe_exports, {
+// .svelte-kit/output/server/chunks/index-b72ffa0b.js
+var index_b72ffa0b_exports = {};
+__export(index_b72ffa0b_exports, {
   default: () => Place
 });
 var Place;
-var init_index_e2e3ddbe = __esm({
-  ".svelte-kit/output/server/chunks/index-e2e3ddbe.js"() {
+var init_index_b72ffa0b = __esm({
+  ".svelte-kit/output/server/chunks/index-b72ffa0b.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     Place = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/[id]-5300c44e.js
-var id_5300c44e_exports = {};
-__export(id_5300c44e_exports, {
+// .svelte-kit/output/server/chunks/[id]-7dbd0a78.js
+var id_7dbd0a78_exports = {};
+__export(id_7dbd0a78_exports, {
   default: () => U5Bidu5D2,
   load: () => load3
 });
@@ -9504,13 +9895,13 @@ async function load3({ page }) {
   };
 }
 var import_axios4, category2, categoryZh2, U5Bidu5D2;
-var init_id_5300c44e = __esm({
-  ".svelte-kit/output/server/chunks/[id]-5300c44e.js"() {
+var init_id_7dbd0a78 = __esm({
+  ".svelte-kit/output/server/chunks/[id]-7dbd0a78.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     import_axios4 = __toModule(require_axios2());
-    init_DetailPage_cb5113c8();
-    init_ImageCardContainer_ff512a0a();
+    init_DetailPage_4348fbc7();
+    init_ImageCardContainer_2e66ec86();
     category2 = "place";
     categoryZh2 = "\u666F\u9EDE";
     U5Bidu5D2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -9532,7 +9923,20 @@ var init_id_5300c44e = __esm({
         ].filter((item2) => !!item2.src),
         title: place.Name,
         tags: [place.Class1, place.Class2, place.Class3].filter((item2) => !!item2),
-        description: place.Description
+        description: place.Description || "" + place.DescriptionDetail || "",
+        details: [
+          { key: "\u958B\u653E\u6642\u9593", value: place.OpenTime },
+          { key: "\u670D\u52D9\u96FB\u8A71", value: place.Phone },
+          {
+            key: "\u666F\u9EDE\u5730\u5740",
+            value: place.Address,
+            href: `https://www.google.com/maps/search/${place.Address}`
+          },
+          { key: "\u5B98\u65B9\u7DB2\u7AD9", value: place.WebsiteUrl },
+          { key: "\u7968\u50F9\u8CC7\u8A0A", value: place.TicketInfo },
+          { key: "\u6CE8\u610F\u4E8B\u9805", value: place.Remarks }
+        ],
+        address: place.Address
       };
       more = nearby.map((item2) => ({
         href: `/${category2}/${item2.ID}`,
@@ -9552,25 +9956,25 @@ var init_id_5300c44e = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-6029fabd.js
-var index_6029fabd_exports = {};
-__export(index_6029fabd_exports, {
+// .svelte-kit/output/server/chunks/index-fb1f0320.js
+var index_fb1f0320_exports = {};
+__export(index_fb1f0320_exports, {
   default: () => Food
 });
 var Food;
-var init_index_6029fabd = __esm({
-  ".svelte-kit/output/server/chunks/index-6029fabd.js"() {
+var init_index_fb1f0320 = __esm({
+  ".svelte-kit/output/server/chunks/index-fb1f0320.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     Food = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/[id]-9ca7fca5.js
-var id_9ca7fca5_exports = {};
-__export(id_9ca7fca5_exports, {
+// .svelte-kit/output/server/chunks/[id]-56c330d7.js
+var id_56c330d7_exports = {};
+__export(id_56c330d7_exports, {
   default: () => U5Bidu5D3,
   load: () => load4
 });
@@ -9594,13 +9998,13 @@ async function load4({ page }) {
   };
 }
 var import_axios5, category3, categoryZh3, U5Bidu5D3;
-var init_id_9ca7fca5 = __esm({
-  ".svelte-kit/output/server/chunks/[id]-9ca7fca5.js"() {
+var init_id_56c330d7 = __esm({
+  ".svelte-kit/output/server/chunks/[id]-56c330d7.js"() {
     init_shims();
-    init_app_45a890be();
+    init_app_1cf152e1();
     import_axios5 = __toModule(require_axios2());
-    init_DetailPage_cb5113c8();
-    init_ImageCardContainer_ff512a0a();
+    init_DetailPage_4348fbc7();
+    init_ImageCardContainer_2e66ec86();
     category3 = "food";
     categoryZh3 = "\u7F8E\u98DF";
     U5Bidu5D3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -9622,7 +10026,22 @@ var init_id_9ca7fca5 = __esm({
         ].filter((item2) => !!item2.src),
         title: restaurant.Name,
         tags: [restaurant.Class],
-        description: restaurant.Description
+        description: restaurant.Description,
+        details: [
+          { key: "\u71DF\u696D\u6642\u9593", value: restaurant.OpenTime },
+          { key: "\u806F\u7D61\u96FB\u8A71", value: restaurant.Phone },
+          {
+            key: "\u9910\u5EF3\u5730\u5740",
+            value: restaurant.Address,
+            href: `https://www.google.com/maps/search/${restaurant.Address}`
+          },
+          {
+            key: "\u5B98\u65B9\u7DB2\u7AD9",
+            value: restaurant.WebsiteUrl,
+            href: restaurant.WebsiteUrl
+          }
+        ],
+        address: restaurant.Address
       };
       more = nearby.map((item2) => ({
         href: `/${category3}/${item2.ID}`,
@@ -9642,7 +10061,7 @@ var init_id_9ca7fca5 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/app-45a890be.js
+// .svelte-kit/output/server/chunks/app-1cf152e1.js
 function get_single_valued_header(headers, key) {
   const value = headers[key];
   if (Array.isArray(value)) {
@@ -10972,9 +11391,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-31845985.js",
+      file: assets + "/_app/start-a5b81c70.js",
       css: [assets + "/_app/assets/start-1f089c51.css", assets + "/_app/assets/vendor-33dd9e65.css"],
-      js: [assets + "/_app/start-31845985.js", assets + "/_app/chunks/vendor-9f24c8b6.js"]
+      js: [assets + "/_app/start-a5b81c70.js", assets + "/_app/chunks/vendor-c040eb31.js"]
     },
     fetched: void 0,
     floc: false,
@@ -11018,8 +11437,8 @@ function render(request, {
   return respond({ ...request, host }, options, { prerender });
 }
 var __accessCheck, __privateGet, __privateAdd, __privateSet, _map, chars, unsafeChars, reserved, escaped$1, objectProtoOwnPropertyNames, subscriber_queue, escape_json_string_in_html_dict, escape_html_attr_dict, s$1, s2, absolute, ReadOnlyFormData, current_component, globals, boolean_attributes, invalid_attribute_name_character, escaped, missing_component, on_destroy, css5, Root, base, assets, user_hooks, template, options, default_settings, d2, empty, manifest, get_hooks, module_lookup, metadata_lookup;
-var init_app_45a890be = __esm({
-  ".svelte-kit/output/server/chunks/app-45a890be.js"() {
+var init_app_1cf152e1 = __esm({
+  ".svelte-kit/output/server/chunks/app-1cf152e1.js"() {
     init_shims();
     __accessCheck = (obj, member, msg) => {
       if (!member.has(obj))
@@ -11274,17 +11693,17 @@ ${``}`;
       externalFetch: hooks.externalFetch || fetch
     });
     module_lookup = {
-      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_f614c0e5(), layout_f614c0e5_exports)),
-      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_6765b4e5(), error_6765b4e5_exports)),
-      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_fceee890(), index_fceee890_exports)),
-      "src/routes/event/index.svelte": () => Promise.resolve().then(() => (init_index_fbb2bbf6(), index_fbb2bbf6_exports)),
-      "src/routes/event/[id].svelte": () => Promise.resolve().then(() => (init_id_21a3aae8(), id_21a3aae8_exports)),
-      "src/routes/place/index.svelte": () => Promise.resolve().then(() => (init_index_e2e3ddbe(), index_e2e3ddbe_exports)),
-      "src/routes/place/[id].svelte": () => Promise.resolve().then(() => (init_id_5300c44e(), id_5300c44e_exports)),
-      "src/routes/food/index.svelte": () => Promise.resolve().then(() => (init_index_6029fabd(), index_6029fabd_exports)),
-      "src/routes/food/[id].svelte": () => Promise.resolve().then(() => (init_id_9ca7fca5(), id_9ca7fca5_exports))
+      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_c785d613(), layout_c785d613_exports)),
+      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_35c456b0(), error_35c456b0_exports)),
+      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_7e92c597(), index_7e92c597_exports)),
+      "src/routes/event/index.svelte": () => Promise.resolve().then(() => (init_index_4cdce4ef(), index_4cdce4ef_exports)),
+      "src/routes/event/[id].svelte": () => Promise.resolve().then(() => (init_id_aee1a75a(), id_aee1a75a_exports)),
+      "src/routes/place/index.svelte": () => Promise.resolve().then(() => (init_index_b72ffa0b(), index_b72ffa0b_exports)),
+      "src/routes/place/[id].svelte": () => Promise.resolve().then(() => (init_id_7dbd0a78(), id_7dbd0a78_exports)),
+      "src/routes/food/index.svelte": () => Promise.resolve().then(() => (init_index_fb1f0320(), index_fb1f0320_exports)),
+      "src/routes/food/[id].svelte": () => Promise.resolve().then(() => (init_id_56c330d7(), id_56c330d7_exports))
     };
-    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-7c0c6176.js", "css": ["assets/pages/__layout.svelte-6cfa9e99.css", "assets/vendor-33dd9e65.css"], "js": ["pages/__layout.svelte-7c0c6176.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-095e4a09.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["error.svelte-095e4a09.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-e245db33.js", "css": ["assets/pages/index.svelte-21627872.css", "assets/vendor-33dd9e65.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/index.svelte-e245db33.js", "chunks/vendor-9f24c8b6.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] }, "src/routes/event/index.svelte": { "entry": "pages/event/index.svelte-99381052.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/event/index.svelte-99381052.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/event/[id].svelte": { "entry": "pages/event/[id].svelte-81f1b279.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/event/[id].svelte-81f1b279.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-4d19cf97.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] }, "src/routes/place/index.svelte": { "entry": "pages/place/index.svelte-a2a0db7f.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/place/index.svelte-a2a0db7f.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/place/[id].svelte": { "entry": "pages/place/[id].svelte-8413840d.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/place/[id].svelte-8413840d.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-4d19cf97.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] }, "src/routes/food/index.svelte": { "entry": "pages/food/index.svelte-faad526e.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/food/index.svelte-faad526e.js", "chunks/vendor-9f24c8b6.js"], "styles": [] }, "src/routes/food/[id].svelte": { "entry": "pages/food/[id].svelte-21d21901.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-c7c3979f.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/food/[id].svelte-21d21901.js", "chunks/vendor-9f24c8b6.js", "chunks/DetailPage-4d19cf97.js", "chunks/ImageCardContainer-d46f786c.js"], "styles": [] } };
+    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-1787b0e5.js", "css": ["assets/pages/__layout.svelte-6cfa9e99.css", "assets/vendor-33dd9e65.css"], "js": ["pages/__layout.svelte-1787b0e5.js", "chunks/vendor-c040eb31.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-c2c2b5a6.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["error.svelte-c2c2b5a6.js", "chunks/vendor-c040eb31.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-1ae10542.js", "css": ["assets/pages/index.svelte-21627872.css", "assets/vendor-33dd9e65.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/index.svelte-1ae10542.js", "chunks/vendor-c040eb31.js", "chunks/ImageCardContainer-8bda37ab.js"], "styles": [] }, "src/routes/event/index.svelte": { "entry": "pages/event/index.svelte-bc034e40.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/event/index.svelte-bc034e40.js", "chunks/vendor-c040eb31.js"], "styles": [] }, "src/routes/event/[id].svelte": { "entry": "pages/event/[id].svelte-66cb5bc2.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-e24f06bc.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/event/[id].svelte-66cb5bc2.js", "chunks/vendor-c040eb31.js", "chunks/DetailPage-4f5e15cf.js", "chunks/ImageCardContainer-8bda37ab.js"], "styles": [] }, "src/routes/place/index.svelte": { "entry": "pages/place/index.svelte-c3f8623e.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/place/index.svelte-c3f8623e.js", "chunks/vendor-c040eb31.js"], "styles": [] }, "src/routes/place/[id].svelte": { "entry": "pages/place/[id].svelte-267119ed.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-e24f06bc.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/place/[id].svelte-267119ed.js", "chunks/vendor-c040eb31.js", "chunks/DetailPage-4f5e15cf.js", "chunks/ImageCardContainer-8bda37ab.js"], "styles": [] }, "src/routes/food/index.svelte": { "entry": "pages/food/index.svelte-5998df6c.js", "css": ["assets/vendor-33dd9e65.css"], "js": ["pages/food/index.svelte-5998df6c.js", "chunks/vendor-c040eb31.js"], "styles": [] }, "src/routes/food/[id].svelte": { "entry": "pages/food/[id].svelte-30fc4f8d.js", "css": ["assets/vendor-33dd9e65.css", "assets/DetailPage-e24f06bc.css", "assets/ImageCardContainer-b788c8a3.css"], "js": ["pages/food/[id].svelte-30fc4f8d.js", "chunks/vendor-c040eb31.js", "chunks/DetailPage-4f5e15cf.js", "chunks/ImageCardContainer-8bda37ab.js"], "styles": [] } };
   }
 });
 
@@ -11337,7 +11756,7 @@ function getRawBody(req) {
 
 // .svelte-kit/output/server/app.js
 init_shims();
-init_app_45a890be();
+init_app_1cf152e1();
 
 // .svelte-kit/vercel/entry.js
 init();
