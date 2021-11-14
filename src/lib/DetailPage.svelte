@@ -39,11 +39,37 @@
 	{/if}
 </section>
 
-<!-- Details -->
-<section class="grid grid-cols-1 sm:grid-cols-2 bg-gray-100 sm:bg-transparent w-screen sm:w-full p-4 mb-4">
-  <!-- asd -->
+<!-- Details & Map -->
+<section
+	class="grid grid-cols-1 sm:grid-cols-2 bg-gray-100 sm:bg-transparent w-screen sm:w-full p-4 sm:p-0 mb-4 rounded-xl gap-4"
+>
+	<!-- Details -->
+	<div class="flex flex-col w-full sm:bg-gray-100 sm:p-4 rounded-xl gap-4">
+		{#each item.details as { key, value, href }}
+			{#if value}
+				<div class="flex items-start gap-2 overflow-hidden">
+					<span class="font-bold whitespace-nowrap">{key}: </span>
+					{#if href}
+						<a {href} class="url font-light" target="_blank">{value}</a>
+					{:else}
+						<span class="font-light">{value}</span>
+					{/if}
+				</div>
+			{/if}
+		{/each}
+	</div>
+
+	<div class="w-full overflow-hidden rounded-xl">
+    <a href={`https://www.google.com/maps/search/${item.address}`} target="_blank">
+      <img
+			src={`https://maps.googleapis.com/maps/api/staticmap?center=${item.address}&zoom=17&size=540x250&scale=2&key=AIzaSyBH6yrrrzTxMJidGPfgtjSzSJVqpGdG9pA`}
+			alt=""
+			class="object-cover object-center h-full w-full"
+      />
+    </a>
+	</div>
 </section>
-  
+
 <!-- More (Nearby) -->
 {#if more.length > 0}
 	<section class="w-full">
@@ -58,3 +84,10 @@
 		</ImageCardContainer>
 	</section>
 {/if}
+
+<style>
+	.url {
+		color: #6e7d60;
+		text-decoration: underline;
+	}
+</style>

@@ -27,6 +27,7 @@
 	"type": "module",
 	"dependencies": {
 		"axios": "^0.24.0",
+		"dayjs": "^1.10.7",
 		"jssha": "^3.2.0",
 		"svelte-select": "^4.4.3"
 	}

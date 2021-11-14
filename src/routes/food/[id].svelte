@@ -50,13 +50,24 @@
 
 	$: item = {
 		images: [
-			{ src: restaurant.Picture?.PictureUrl1},
-			{ src: restaurant.Picture?.PictureUrl2},
-			{ src: restaurant.Picture?.PictureUrl3}
+			{ src: restaurant.Picture?.PictureUrl1 },
+			{ src: restaurant.Picture?.PictureUrl2 },
+			{ src: restaurant.Picture?.PictureUrl3 }
 		].filter((item) => !!item.src),
 		title: restaurant.Name,
 		tags: [restaurant.Class],
-		description: restaurant.Description
+		description: restaurant.Description,
+		details: [
+			{ key: '營業時間', value: restaurant.OpenTime },
+			{ key: '聯絡電話', value: restaurant.Phone },
+			{
+				key: '餐廳地址',
+				value: restaurant.Address,
+				href: `https://www.google.com/maps/search/${restaurant.Address}`
+			},
+			{ key: '官方網站', value: restaurant.WebsiteUrl, href: restaurant.WebsiteUrl }
+		],
+    address: restaurant.Address
 	};
 
 	$: more = nearby.map((item) => ({

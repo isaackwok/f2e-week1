@@ -56,7 +56,16 @@
 		].filter((item) => !!item.src),
 		title: place.Name,
 		tags: [place.Class1, place.Class2, place.Class3].filter((item) => !!item),
-		description: place.Description
+		description: place.Description || '' + place.DescriptionDetail || '',
+    details: [
+      {key: '開放時間', value: place.OpenTime},
+      {key: '服務電話', value: place.Phone},
+      {key: '景點地址', value: place.Address, href: `https://www.google.com/maps/search/${place.Address}`},
+      {key: '官方網站', value: place.WebsiteUrl},
+      {key: '票價資訊', value: place.TicketInfo},
+      {key: '注意事項', value: place.Remarks},
+    ],
+    address: place.Address
 	};
 
 	$: more = nearby.map((item) => ({

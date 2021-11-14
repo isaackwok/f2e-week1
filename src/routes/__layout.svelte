@@ -1,11 +1,18 @@
 <script context="module">
 	import axios from 'axios';
+	import dayjs from 'dayjs';
+	import tz from 'dayjs/plugin/timezone';
+	import utc from 'dayjs/plugin/utc';
 	import getAuthorizationHeader from '../api/getAuthHeader';
+
 	axios.defaults.baseURL = 'https://ptx.transportdata.tw/MOTC/v2/Tourism';
 	axios.interceptors.request.use((config) => {
 		config.headers = getAuthorizationHeader();
 		return config;
 	});
+	dayjs.extend(utc);
+	dayjs.extend(tz);
+	dayjs.tz.setDefault('Asia/Taipei');
 </script>
 
 <script>
